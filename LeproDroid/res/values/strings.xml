@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">LeproDroid</string>
+    <string name="main_drawer_open">Открыть</string>
+    <string name="main_drawer_close">Закрыть</string>
 
 </resources>
