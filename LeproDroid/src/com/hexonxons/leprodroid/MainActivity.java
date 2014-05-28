@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.hexonxons.leprodroid.utils.Utils;
 import com.sherlock.navigationdrawer.compat.SherlockActionBarDrawerToggle;
 
 public class MainActivity extends SherlockActivity
@@ -46,7 +45,7 @@ public class MainActivity extends SherlockActivity
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id)
             {
-                return groupPosition != 2;
+                return true;
             }
         });
     }

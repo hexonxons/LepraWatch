@@ -3,5 +3,9 @@
     <string name="app_name">LeproDroid</string>
     <string name="main_drawer_open">Открыть</string>
     <string name="main_drawer_close">Закрыть</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="show_password">Показать пароль</string>
+    <string name="login_button">YARRR!</string>
 
 </resources>

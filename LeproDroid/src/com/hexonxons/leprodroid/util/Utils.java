@@ -1,4 +1,4 @@
-package com.hexonxons.leprodroid.utils;
+package com.hexonxons.leprodroid.util;
 
 import android.content.Context;
 import android.content.res.Resources;
