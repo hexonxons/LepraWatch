@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_drawer_panel"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <TextView
+        android:id="@+id/main_drawer_panel_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="56dp"
+        android:paddingTop="8dp"
+        android:text="Я видел &quot;17 мгновений весны&quot; на китайском, ep5ilon."
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/lepra_gray" />
+
+    <RelativeLayout
+        android:id="@+id/main_drawer_panel_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
+
+        <ImageButton
+            android:id="@+id/main_drawer_panel_bottom_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_settings" />
+
+        <ImageButton
+            android:id="@+id/main_drawer_panel_bottom_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_logout" />
+
+        <TextView
+            android:id="@+id/main_drawer_panel_bottom_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@+id/main_drawer_panel_bottom_logout"
+            android:layout_toRightOf="@+id/main_drawer_panel_bottom_settings"
+            android:gravity="center_vertical"
+            android:text="Lepradroid. version 06.2014"
+            android:textColor="@color/navigation_drawer_text" />
+    </RelativeLayout>
+    
+    <View
+        android:id="@+id/main_drawer_panel_divider_1"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/main_drawer_panel_welcome"
+        android:background="@color/navigation_drawer_divider" />
+    
+    <View
+        android:id="@+id/main_drawer_panel_divider_7"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_above="@+id/main_drawer_panel_bottom"
+        android:layout_alignParentLeft="true"
+        android:background="@color/navigation_drawer_divider" />
+
+    <ScrollView
+        android:id="@+id/main_drawer_panel_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/main_drawer_panel_divider_1"
+        android:layout_alignBottom="@+id/main_drawer_panel_divider_7" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <RelativeLayout
+                android:id="@+id/main_drawer_panel_main"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" >
+        
+                <ImageView
+                    android:id="@+id/main_drawer_panel_main_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_action_view_as_list" />
+        
+                <TextView
+                    android:id="@+id/main_drawer_panel_main_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/main_drawer_panel_main_icon"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_main"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/navigation_drawer_text" />
+        
+            </RelativeLayout>
+        
+            <View
+                android:id="@+id/main_drawer_panel_divider_2"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_main"
+                android:background="@color/navigation_drawer_divider" />
+        
+            <RelativeLayout
+                android:id="@+id/main_drawer_panel_favorites"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_divider_2" >
+                
+                <ImageView
+                    android:id="@+id/main_drawer_panel_favorites_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_action_important" />
+                
+                <TextView
+                    android:id="@+id/main_drawer_panel_favorites_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/main_drawer_panel_favorites_icon"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_favorites"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/navigation_drawer_text" />
+                
+            </RelativeLayout>
+        
+            <View
+                android:id="@+id/main_drawer_panel_divider_3"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_favorites"
+                android:background="@color/navigation_drawer_divider" />
+        
+            <RelativeLayout
+                android:id="@+id/main_drawer_panel_inbox"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_divider_3" >
+                
+                <ImageView
+                    android:id="@+id/main_drawer_panel_inbox_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_action_unread" />
+                
+                <TextView
+                    android:id="@+id/main_drawer_panel_inbox_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/main_drawer_panel_inbox_icon"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_inbox"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/navigation_drawer_text" />
+        
+                <TextView
+                    android:id="@+id/main_drawer_panel_inbox_unread"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lepra_green"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="125/2236"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+                
+            </RelativeLayout>
+        
+            <View
+                android:id="@+id/main_drawer_panel_divider_4"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_inbox"
+                android:background="@color/navigation_drawer_divider" />
+            
+            <RelativeLayout
+                android:id="@+id/main_drawer_panel_subsites"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_divider_4" >
+                
+                <ImageView
+                    android:id="@+id/main_drawer_panel_subsites_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_action_group" />
+                
+                <TextView
+                    android:id="@+id/main_drawer_panel_subsites_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/main_drawer_panel_subsites_icon"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_subsites"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/navigation_drawer_text" />
+                
+            </RelativeLayout>
+            
+            <View
+                android:id="@+id/main_drawer_panel_divider_5"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_subsites"
+                android:background="@color/navigation_drawer_divider" />
+            
+            <RelativeLayout
+                android:id="@+id/main_drawer_panel_election"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_divider_5" >
+                
+                <ImageView
+                    android:id="@+id/main_drawer_panel_election_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_action_poll" />
+                
+                <TextView
+                    android:id="@+id/main_drawer_panel_election_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/main_drawer_panel_election_icon"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_election"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/navigation_drawer_text" />
+        
+                <TextView
+                    android:id="@+id/main_drawer_panel_election_live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lepra_red"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/navigation_election_live"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+                
+            </RelativeLayout>
+            
+            <View
+                android:id="@+id/main_drawer_panel_divider_6"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_drawer_panel_election"
+                android:background="@color/navigation_drawer_divider" />
+            
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

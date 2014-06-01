@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">LeprаDroid</string>
+    
+    <string name="actionbar_label">LEPRADROID</string>
+    
+    <string name="main_drawer_open">Открыть</string>
+    <string name="main_drawer_close">Закрыть</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="show_password">Показать пароль</string>
+    <string name="login_button">YARRR!</string>
+    
+    <string name="navigation_main">Главная</string>
+    <string name="navigation_favorites">Избранное</string>
+    <string name="navigation_inbox">Инбокс</string>
+    <string name="navigation_subsites">Подлепры</string>
+    <string name="navigation_election">Выборы</string>
+    <string name="navigation_election_live">• LIVE</string>
+    
+    <string name="write_man">Написал</string>
+    <string name="write_woman">Написала</string>
+    
+    <string name="comments_text_one">комментарий</string>
+    <string name="comments_text_few">комментария</string>
+    <string name="comments_text_other">комментариев</string>
+    
+    <string name="comments_one">новый</string>
+    <string name="comments_other">новых</string>
+    
+    <string name="action_new_post">Новый пост</string>
+    <string name="action_search">Поиск</string>
+</resources>
