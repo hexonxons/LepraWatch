@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@drawable/post_menu_background" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <RelativeLayout
+            android:id="@+id/post_menu_rating"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" >
+            
+            <View
+                android:id="@+id/post_menu_rating_separator"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/navigation_drawer_divider" />
+            
+            <ImageView
+                android:id="@+id/post_menu_rating_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/post_menu_rating_separator"
+                android:background="@drawable/navigation_element_background"
+                android:clickable="true"
+                android:src="@drawable/ic_action_bad" />
+            
+            <ImageView
+                android:id="@+id/post_menu_rating_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/post_menu_rating_separator"
+                android:background="@drawable/navigation_element_background"
+                android:clickable="true"
+                android:src="@drawable/ic_action_good" />
+
+        </RelativeLayout>
+        
+        <View
+            android:id="@+id/post_menu_separator_1"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/post_menu_rating"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_menu_my"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/post_menu_separator_1"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/post_menu_my"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/navigation_drawer_text"
+            app:typeface="roboto_regular" />
+        
+        <View
+            android:id="@+id/post_menu_separator_2"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/post_menu_my"
+            android:background="@color/navigation_drawer_divider" />
+    
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_menu_favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/post_menu_separator_2"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/post_menu_favorites"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/navigation_drawer_text"
+            app:typeface="roboto_regular" />
+        
+        <View
+            android:id="@+id/post_menu_separator_3"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/post_menu_favorites"
+            android:background="@color/navigation_drawer_divider" />
+    
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_menu_author"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/post_menu_separator_3"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/post_menu_author"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/navigation_drawer_text"
+            app:typeface="roboto_regular" />
+        
+        <View
+            android:id="@+id/post_menu_separator_4"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/post_menu_author"
+            android:background="@color/navigation_drawer_divider" />
+    
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_menu_share"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/post_menu_separator_4"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/post_menu_share"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/navigation_drawer_text"
+            app:typeface="roboto_regular" />
+        
+        <View
+            android:id="@+id/post_menu_separator_5"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/post_menu_share"
+            android:background="@color/navigation_drawer_divider" />
+    
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_menu_hide"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/post_menu_separator_5"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/post_menu_hide"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/navigation_drawer_text"
+            app:typeface="roboto_regular" />
+    
+    </RelativeLayout>
+</ScrollView>
+

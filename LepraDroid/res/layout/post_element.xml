@@ -3,35 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_background_gold">
+    android:background="@drawable/card_background">
+    
+    <View
+        android:id="@+id/post_element_gold"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/post_gradient_gold" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/post_element_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="5dp"
-        android:text="Написал с айфона greenkaktus, 29 мая 2014 в 15.36"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/post_element_overflow"
+        android:text="Написал с айфона greenkaktus"
         android:textColor="@color/lepra_gray"
-        app:typeface="roboto_medium" />
+        app:typeface="roboto_regular" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/post_element_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/post_element_author"
+        android:layout_below="@+id/post_element_date"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text="Лепра дай пять!!!
-
-Все таки полезно хлам разбирать в гараже. Вчера нашел старую коробку со слайдами, оставшуюся от деда. 
-
-Некоторые из них показались мне интересными, поэтому я достал старый сканер nikon и даю возможность вам посмотреть некоторые кадры."
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Господа, у меня вопрос к тем, кто съебал за границу. Чем вы руководствовались при съебе, не на пустое же место вы уезжали, какой фундамент у вас был? И чем сейчас занимаетесь? Не одиноко ли вам там?"
         android:textColor="@color/lepra_black"
         app:typeface="roboto_light" />
 
@@ -42,14 +47,14 @@
         android:layout_alignBaseline="@+id/post_element_comments_count"
         android:layout_alignBottom="@+id/post_element_comments_count"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:background="@color/lepra_gray"
         android:paddingBottom="2dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="2dp"
         android:text="5235"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/white"
         app:typeface="roboto_bold" />
 
@@ -59,13 +64,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/post_element_text"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/post_element_comments_icon"
         android:gravity="top"
         android:text="432 комментария"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/lepra_gray"
-        app:typeface="roboto_medium" />
+        app:typeface="roboto_regular" />
 
     <ImageView
         android:id="@+id/post_element_comments_icon"
@@ -73,8 +78,30 @@
         android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/post_element_comments_count"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
         android:src="@drawable/ic_comments" />
 
+    <ImageView
+        android:id="@+id/post_element_overflow"
+        android:layout_width="@dimen/abc_action_bar_default_height"
+        android:layout_height="@dimen/abc_action_bar_default_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/navigation_element_background"
+        android:src="@drawable/ic_action_overflow" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/post_element_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/post_element_author"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/post_element_overflow"
+        android:text="29 мая 2014 в 15.36"
+        android:textColor="@color/lepra_gray"
+        app:typeface="roboto_regular" />
 </RelativeLayout>

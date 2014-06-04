@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background" >
+
+    <ImageView
+        android:id="@+id/auth_top_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/auth_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="32dp"
+        android:background="@color/lepra_login_background"
+        android:padding="20dp"
+        android:src="@drawable/hypnotoad" />
+
+    <com.devspark.robototextview.widget.RobotoButton
+        android:id="@+id/auth_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/auth_text"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/auth_text"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_button_background"
+        android:text="@string/login_button"
+        android:textColor="@color/navigation_drawer_background"
+        app:typeface="roboto_regular" />
+    
+    <com.devspark.robototextview.widget.RobotoEditText
+        android:id="@+id/auth_password_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/auth_login_button"
+        android:layout_alignLeft="@+id/auth_text"
+        android:layout_alignRight="@+id/auth_text"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:typeface="roboto_regular" />
+
+    <com.devspark.robototextview.widget.RobotoEditText
+        android:id="@+id/auth_login_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/auth_password_edit"
+        android:layout_alignLeft="@+id/auth_text"
+        android:layout_alignRight="@+id/auth_text"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/login"
+        app:typeface="roboto_regular" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/auth_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/auth_login_edit"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_label"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/lepra_gold"
+        android:textSize="32sp"
+        app:typeface="bebas" />
+
+    <ImageView
+        android:id="@+id/auth_center_mask"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_above="@+id/auth_text"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_login" />
+
+</RelativeLayout>

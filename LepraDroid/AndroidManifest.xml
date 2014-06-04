@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hexonxons.lepradroid"
-    android:versionCode="1"
-    android:versionName="0.0.1" >
+    android:versionCode="3"
+    android:versionName="0.0.3" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -16,7 +16,7 @@
         
         <activity
             android:name="com.hexonxons.lepradroid.MainActivity"
-            android:label="@string/actionbar_label">
+            android:theme="@style/Theme.Lepradroid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

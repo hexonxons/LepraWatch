@@ -4,14 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Post
 {
-    @JsonProperty("userName")
-    public String userName  = null;
-    
-    @JsonProperty("userRank")
-    public String userRank  = null;
-    
-    @JsonProperty("userGender")
-    public int userGender   = 0;
+    @JsonProperty("user")
+    public SimpeUser user   = null;
     
     @JsonProperty("date")
     public String date      = null;

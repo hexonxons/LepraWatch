@@ -4,6 +4,6 @@
         <color android:color="@color/navigation_drawer_pressed"/>
     </item>
     <item>
-        <color android:color="@color/navigation_drawer_background"/>
+        <color android:color="@android:color/transparent"/>
     </item>
 </selector>

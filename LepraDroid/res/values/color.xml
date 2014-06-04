@@ -9,6 +9,10 @@
     <color name="lepra_blue">#FF0099CC</color>
     <color name="lepra_magneta">#FFF655A0</color>
     <color name="lepra_black">#FF171717</color>
+    <color name="lepra_login_background">#FF7FB17A</color>
+    
+    <color name="lepra_login_button">#FFB58D00</color>
+    <color name="lepra_login_button_pressed">#90B58D00</color>
     
     <color name="navigation_drawer_divider">#FFD3D3D3</color>
     <color name="navigation_drawer_background">#FFF5F5F5</color>

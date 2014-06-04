@@ -74,7 +74,7 @@
     </RelativeLayout>
     
     <View
-        android:id="@+id/main_drawer_panel_divider_1"
+        android:id="@+id/main_drawer_panel_divider_top"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_alignParentLeft="true"
@@ -82,7 +82,7 @@
         android:background="@color/navigation_drawer_divider" />
     
     <View
-        android:id="@+id/main_drawer_panel_divider_7"
+        android:id="@+id/main_drawer_panel_divider_bottom"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_above="@+id/main_drawer_panel_bottom"
@@ -94,8 +94,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/main_drawer_panel_divider_1"
-        android:layout_alignBottom="@+id/main_drawer_panel_divider_7" >
+        android:layout_alignTop="@+id/main_drawer_panel_divider_top"
+        android:layout_alignBottom="@+id/main_drawer_panel_divider_bottom" >
 
         <RelativeLayout
             android:layout_width="match_parent"
