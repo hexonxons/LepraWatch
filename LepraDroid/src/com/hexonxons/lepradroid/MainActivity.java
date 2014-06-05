@@ -49,16 +49,6 @@ public class MainActivity extends ActionBarActivity
         
         mWelcomeMessages = getResources().getStringArray(R.array.welcome_text);
         
-        SpannableString title = new SpannableString("LEPRADROID");
-        title.setSpan(new TypefaceSpan(this, "Bebas.ttf"), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(title);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        
-        setContentView(R.layout.main);
-        
         try
         {
             mUser = new ObjectMapper().readValue(getResources().getAssets().open("user.json"), SimpeUser.class);
@@ -76,6 +66,8 @@ public class MainActivity extends ActionBarActivity
             e.printStackTrace();
         }
         
+        setContentView(R.layout.main);
+        
         mDrawer = (DrawerLayout) findViewById(R.id.main_drawer);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, R.drawable.ic_drawer, R.string.main_drawer_open, R.string.main_drawer_close)
         {
@@ -87,24 +79,8 @@ public class MainActivity extends ActionBarActivity
         };
         mDrawer.setDrawerListener(mDrawerToggle);
         
-        if(savedInstanceState == null)
-        {
-            SharedPreferences preferences = getSharedPreferences(CONSTANTS.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-            String userName = preferences.getString(CONSTANTS.SHARED_PREFERENCES_USERNAME, null);
-            
-            if(userName == null)
-            {
-                getSupportFragmentManager().beginTransaction().add(R.id.main_wrapper, new AuthFragment(), AuthFragment.TAG).commit();
-            }
-            else
-            {
-                getSupportFragmentManager().beginTransaction().add(R.id.main_wrapper, new MainFragment(), MainFragment.TAG).commit();
-            }
-        }
-        
-        // Generate welcome text.
+        // Find welcome textview.
         mWelcomeTextView = ((TextView)mDrawer.findViewById(R.id.main_drawer_panel_welcome));
-        generateWelcomeMessage();
         
         // Set logout listener.
         mDrawer.findViewById(R.id.main_drawer_panel_bottom_logout).setOnClickListener(new OnClickListener()
@@ -121,9 +97,37 @@ public class MainActivity extends ActionBarActivity
                 editor.putString(CONSTANTS.SHARED_PREFERENCES_USERNAME, null);
                 editor.commit();
                 
+                // Hide action bar.
+                setActionBarEnabled(false);
+                
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_wrapper, new AuthFragment(), AuthFragment.TAG).commit();
             }
         });
+        
+        generateWelcomeMessage();
+        
+        // Get saved username.
+        SharedPreferences preferences = getSharedPreferences(CONSTANTS.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        String userName = preferences.getString(CONSTANTS.SHARED_PREFERENCES_USERNAME, null);
+        
+        if(userName == null || userName.length() == 0)
+        {
+            setActionBarEnabled(false);
+            // Load auth fragment.
+            if(savedInstanceState == null)
+            {
+                getSupportFragmentManager().beginTransaction().add(R.id.main_wrapper, new AuthFragment(), AuthFragment.TAG).commit();
+            }
+        }
+        else
+        {
+            setActionBarEnabled(true);
+            // Load main fragment.
+            if(savedInstanceState == null)
+            {
+                getSupportFragmentManager().beginTransaction().add(R.id.main_wrapper, new MainFragment(), MainFragment.TAG).commit();
+            }
+        }
     }
     
     @Override
@@ -182,6 +186,27 @@ public class MainActivity extends ActionBarActivity
         else
         {
             mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
+    }
+    
+    public void setActionBarEnabled(boolean enabled)
+    {
+        if(enabled)
+        {
+            // Setup action bar.
+            SpannableString title = new SpannableString("LEPRADROID");
+            title.setSpan(new TypefaceSpan(this, "Bebas.ttf"), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setTitle(title);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.show();
+        }
+        else
+        {
+            // No saved user. Hide action bar.
+            getSupportActionBar().hide();
         }
     }
 }

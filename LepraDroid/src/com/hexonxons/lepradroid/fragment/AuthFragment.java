@@ -56,6 +56,8 @@ public class AuthFragment extends Fragment
                     editor.putString(CONSTANTS.SHARED_PREFERENCES_USERNAME, mLoginEditText.getText().toString());
                     editor.commit();
                     
+                    ((MainActivity)getActivity()).setActionBarEnabled(true);
+                    
                     getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()

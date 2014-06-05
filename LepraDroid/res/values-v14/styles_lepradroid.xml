@@ -18,7 +18,7 @@
 -->
 
 <resources>
-
+    
     <style name="Theme.Lepradroid" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarItemBackground">@drawable/selectable_background_lepradroid</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Lepradroid</item>
@@ -32,16 +32,19 @@
         
                 <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Lepradroid.Widget</item>
-
+        
+                <!-- Edittext style -->
+        <item name="android:editTextStyle">@style/EditTextlepradroid</item>
+        
     </style>
-
+    
     <style name="ActionBar.Solid.Lepradroid" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_lepradroid</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_lepradroid</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_lepradroid</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Lepradroid</item>
     </style>
-
+    
     <style name="ActionBar.Transparent.Lepradroid" parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:background">@drawable/ab_transparent_lepradroid</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Lepradroid</item>
@@ -52,5 +55,5 @@
         <item name="android:popupMenuStyle">@style/PopupMenu.Lepradroid</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Lepradroid</item>
     </style>
-
+    
 </resources>

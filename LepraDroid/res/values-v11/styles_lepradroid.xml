@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Lepradroid" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:editTextBackground">@drawable/lepradroid_edit_text_holo_light</item>
+    </style>
+</resources>

@@ -30,6 +30,7 @@ import com.devspark.robototextview.RobotoTypefaceManager;
  *
  * @author Evgeny Shishkin
  */
+@SuppressWarnings("deprecation")
 public class RobotoDigitalClock extends DigitalClock {
 
     /**

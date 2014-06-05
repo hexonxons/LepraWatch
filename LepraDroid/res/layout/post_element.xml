@@ -3,105 +3,229 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_background">
-    
-    <View
-        android:id="@+id/post_element_gold"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/post_gradient_gold" />
-
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/post_element_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_toLeftOf="@+id/post_element_overflow"
-        android:text="Написал с айфона greenkaktus"
-        android:textColor="@color/lepra_gray"
-        app:typeface="roboto_regular" />
+    android:layout_marginBottom="1dp"
+    android:background="@drawable/card_background" >
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/post_element_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/post_element_date"
-        android:layout_marginBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:text="Господа, у меня вопрос к тем, кто съебал за границу. Чем вы руководствовались при съебе, не на пустое же место вы уезжали, какой фундамент у вас был? И чем сейчас занимаетесь? Не одиноко ли вам там?"
         android:textColor="@color/lepra_black"
         app:typeface="roboto_light" />
 
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/post_element_rating"
+    <View
+        android:id="@+id/post_element_divider"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/post_element_comments_count"
-        android:layout_alignBottom="@+id/post_element_comments_count"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:background="@color/lepra_gray"
-        android:paddingBottom="2dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="2dp"
-        android:text="5235"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/white"
-        app:typeface="roboto_bold" />
-
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/post_element_comments_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="1.5dp"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/post_element_text"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/post_element_comments_icon"
-        android:gravity="top"
-        android:text="432 комментария"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/lepra_gray"
-        app:typeface="roboto_regular" />
+        android:background="@color/navigation_drawer_divider" />
 
-    <ImageView
-        android:id="@+id/post_element_comments_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/post_element_comments_count"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/ic_comments" />
-
-    <ImageView
-        android:id="@+id/post_element_overflow"
-        android:layout_width="@dimen/abc_action_bar_default_height"
-        android:layout_height="@dimen/abc_action_bar_default_height"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/navigation_element_background"
-        android:src="@drawable/ic_action_overflow" />
-
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/post_element_date"
+    <RelativeLayout
+        android:id="@+id/post_info_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/post_element_author"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/post_element_overflow"
-        android:text="29 мая 2014 в 15.36"
-        android:textColor="@color/lepra_gray"
-        app:typeface="roboto_regular" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/post_element_divider"
+        android:background="@drawable/post_gold"
+        android:clickable="true"
+        android:visibility="visible" >
+        
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_info_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/lepra_gray"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="5235"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white"
+            app:typeface="roboto_bold" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_info_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/post_info_rating"
+            android:text="Написал с айфона greenkaktus, 29 мая 2014 в 15.36"
+            android:textColor="@color/lepra_gray"
+            android:textSize="12sp"
+            app:typeface="roboto_regular" />
+
+        <ImageView
+            android:id="@+id/post_info_comments_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/post_info_author"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="7dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_comments" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_info_comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/post_info_author"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/post_info_comments_icon"
+            android:gravity="top"
+            android:text="432 комментария"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/lepra_gray"
+            android:textSize="12sp"
+            app:typeface="roboto_regular" />
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@+id/post_action_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/post_element_divider"
+        android:background="@drawable/post_gold"
+        android:visibility="gone" >
+        
+        <ImageView
+            android:id="@+id/post_action_like"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_good" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <ImageView
+            android:id="@+id/post_action_dislike"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_bad" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <ImageView
+            android:id="@+id/post_action_to_my"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_favorite" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <ImageView
+            android:id="@+id/post_action_to_favorites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_important" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <ImageView
+            android:id="@+id/post_action_about_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_person" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <ImageView
+            android:id="@+id/post_action_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_share" />
+        
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/navigation_drawer_divider" />
+        
+        <ImageView
+            android:id="@+id/post_action_hide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/navigation_element_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_discard" />
+        
+    </LinearLayout>
+    
 </RelativeLayout>

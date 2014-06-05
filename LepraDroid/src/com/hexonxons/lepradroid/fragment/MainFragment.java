@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -13,19 +12,19 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -37,11 +36,11 @@ import com.hexonxons.lepradroid.structures.Post;
 
 public class MainFragment extends Fragment
 {
-    public static final String TAG  = "MainFragment";
+    public static final String TAG      = "MainFragment";
     
-    private Post[] mPosts = null;
+    private Post[] mPosts               = null;
     
-    private PopupWindow mActivePostMenu   = null;
+    private ViewHolder mActiveHolder    = null;
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -85,6 +84,22 @@ public class MainFragment extends Fragment
         
         ListView view = (ListView) inflater.inflate(R.layout.main_post_list, container, false);
         view.setAdapter(new MainAdapter());
+        view.setOnTouchListener(new OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                if(mActiveHolder != null)
+                {
+                    mActiveHolder.infoWrapper.setVisibility(View.VISIBLE);
+                    mActiveHolder.actionWrapper.setVisibility(View.GONE);
+                    
+                    mActiveHolder = null;
+                }
+                
+                return false;
+            }
+        });
         
         return view;
     }
@@ -93,15 +108,6 @@ public class MainFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
         inflater.inflate(R.menu.main_menu, menu);
-    }
-    
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        
-        if(mActivePostMenu != null)
-            mActivePostMenu.dismiss();
     }
     
     private class MainAdapter extends BaseAdapter
@@ -134,23 +140,34 @@ public class MainFragment extends Fragment
                 view = (ViewGroup) getActivity().getLayoutInflater().inflate(R.layout.post_element, parent, false);
                 
                 ViewHolder holder = new ViewHolder();
-                holder.author = (TextView) view.findViewById(R.id.post_element_author);
-                holder.date = (TextView) view.findViewById(R.id.post_element_date);
-                holder.commentsCount = (TextView) view.findViewById(R.id.post_element_comments_count);
-                holder.commentsIcon = (ImageView) view.findViewById(R.id.post_element_comments_icon);
-                holder.rating = (TextView) view.findViewById(R.id.post_element_rating);
+                
                 holder.text = (TextView) view.findViewById(R.id.post_element_text);
-                holder.actions = (ImageView) view.findViewById(R.id.post_element_overflow);
-                holder.gold = view.findViewById(R.id.post_element_gold);
+                
+                holder.infoWrapper = (ViewGroup) view.findViewById(R.id.post_info_wrapper);
+                
+                holder.author = (TextView) view.findViewById(R.id.post_info_author);
+                holder.commentsCount = (TextView) view.findViewById(R.id.post_info_comments_count);
+                holder.commentsIcon = (ImageView) view.findViewById(R.id.post_info_comments_icon);
+                holder.rating = (TextView) view.findViewById(R.id.post_info_rating);
+                
+                holder.actionWrapper = (ViewGroup) view.findViewById(R.id.post_action_wrapper);
+                
+                holder.like = (ImageView) view.findViewById(R.id.post_action_like);
+                holder.dislike = (ImageView) view.findViewById(R.id.post_action_dislike);
+                holder.toMy = (ImageView) view.findViewById(R.id.post_action_to_my);
+                holder.toFavorites = (ImageView) view.findViewById(R.id.post_action_to_favorites);
+                holder.aboutAuthor = (ImageView) view.findViewById(R.id.post_action_about_author);
+                holder.share = (ImageView) view.findViewById(R.id.post_action_share);
+                holder.hide = (ImageView) view.findViewById(R.id.post_action_hide);
                 
                 view.setTag(holder);
             }
             
             Resources res = getResources();
             
-            Post post = mPosts[position];
+            final Post post = mPosts[position];
             
-            ViewHolder holder = (ViewHolder) view.getTag();
+            final ViewHolder holder = (ViewHolder) view.getTag();
             
             // Build author text.
             SpannableStringBuilder authorBuilder = new SpannableStringBuilder();
@@ -169,10 +186,9 @@ public class MainFragment extends Fragment
             authorBuilder.setSpan(new ForegroundColorSpan(res.getColor(post.user.userGender == 0 ? R.color.lepra_blue : R.color.lepra_magneta)), authorStart, authorEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             // Bold style.
             authorBuilder.setSpan(new StyleSpan(Typeface.BOLD), authorStart, authorEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            holder.author.setText(authorBuilder);
-            
             // Date.
-            holder.date.setText(post.date);
+            authorBuilder.append(", " + post.date);
+            holder.author.setText(authorBuilder);
             
             // Build comments text.
             SpannableStringBuilder commentsBuilder = new SpannableStringBuilder();
@@ -222,56 +238,63 @@ public class MainFragment extends Fragment
             if(post.isGold)
             {
                 holder.rating.setBackgroundColor(res.getColor(R.color.lepra_gold));
-                holder.gold.setVisibility(View.VISIBLE);
+                holder.infoWrapper.setBackgroundResource(R.drawable.post_gold);
+                holder.actionWrapper.setBackgroundResource(R.drawable.post_gold);
             }
             else
             {
                 holder.rating.setBackgroundColor(res.getColor(R.color.lepra_gray));
-                holder.gold.setVisibility(View.GONE);
+                holder.infoWrapper.setBackgroundResource(R.drawable.post_default);
+                holder.actionWrapper.setBackgroundResource(R.drawable.post_default);
             }
             holder.rating.setText("" + post.rating);
             
-            // TODO: build that too.
-            holder.text.setText(post.text);
-            
-            holder.actions.setOnClickListener(new OnClickListener()
+            holder.infoWrapper.setOnClickListener(new OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    mActivePostMenu = new PopupWindow(
-                            getActivity().getLayoutInflater().inflate(R.layout.post_menu, null),
-                            (int) getResources().getDimension(R.dimen.post_menu_width),
-                            LayoutParams.WRAP_CONTENT);
-                    
-                    mActivePostMenu.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.navigation_drawer_background)));
-                    mActivePostMenu.setOutsideTouchable(true);
-                    mActivePostMenu.showAsDropDown(v, 0, 0, Gravity.RIGHT | Gravity.TOP);
-                    
-                    mActivePostMenu.setOnDismissListener(new OnDismissListener()
+                    if(mActiveHolder != null)
                     {
-                        @Override
-                        public void onDismiss()
-                        {
-                            mActivePostMenu = null;
-                        }
-                    });
+                        mActiveHolder.infoWrapper.setVisibility(View.VISIBLE);
+                        mActiveHolder.actionWrapper.setVisibility(View.GONE);
+                    }
+                    
+                    mActiveHolder = holder;
+                    
+                    holder.infoWrapper.setVisibility(View.GONE);
+                    holder.actionWrapper.setVisibility(View.VISIBLE);
                 }
             });
             
+            // TODO: build that too.
+            holder.text.setText(post.text);
+            
             return view;
         }
+    }
+    
+    private class ViewHolder
+    {
+        TextView text           = null;
         
-        private class ViewHolder
-        {
-            TextView author         = null;
-            TextView date           = null;
-            TextView text           = null;
-            ImageView commentsIcon  = null;
-            TextView commentsCount  = null;
-            TextView rating         = null;
-            ImageView actions       = null;
-            View gold               = null;
-        }
+        // Info group
+        ViewGroup infoWrapper   = null;
+        
+        TextView author         = null;
+        ImageView commentsIcon  = null;
+        TextView commentsCount  = null;
+        TextView rating         = null;
+        
+        // Action group
+        ViewGroup actionWrapper = null;
+        
+        ImageView like          = null;
+        ImageView dislike       = null;
+        ImageView toMy          = null;
+        ImageView toFavorites   = null;
+        ImageView aboutAuthor   = null;
+        ImageView share         = null;
+        ImageView hide          = null;
     }
 }

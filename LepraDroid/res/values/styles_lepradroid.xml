@@ -32,7 +32,15 @@
 
                 <!-- Light.DarkActionBar specific -->
         <item name="actionBarWidgetTheme">@style/Theme.Lepradroid.Widget</item>
+        
+                <!-- Edittext style -->
+        <item name="android:editTextStyle">@style/EditTextlepradroid</item>
 
+    </style>
+    
+    <style name="EditTextlepradroid" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/lepradroid_edit_text_holo_light</item>
+        <item name="android:textColor">#000000</item>
     </style>
 
     <style name="ActionBar.Solid.Lepradroid" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">

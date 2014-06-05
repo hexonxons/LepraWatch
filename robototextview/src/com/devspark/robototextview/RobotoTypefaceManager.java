@@ -52,6 +52,7 @@ public class RobotoTypefaceManager {
     public final static int ROBOTO_SLAB_LIGHT = 19;
     public final static int ROBOTO_SLAB_REGULAR = 20;
     public final static int ROBOTO_SLAB_BOLD = 21;
+    public final static int BEBAS = 22;
     /**
      * Array of created typefaces for later reused.
      */
@@ -151,6 +152,9 @@ public class RobotoTypefaceManager {
                 break;
             case ROBOTO_SLAB_BOLD:
                 typeface = Typeface.createFromAsset(context.getAssets(), "fonts/RobotoSlab-Bold.ttf");
+                break;
+            case BEBAS:
+                typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Bebas.ttf");
                 break;
             default:
                 throw new IllegalArgumentException("Unknown `typeface` attribute value " + typefaceValue);

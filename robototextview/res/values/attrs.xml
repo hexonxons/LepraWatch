@@ -101,6 +101,7 @@
         <enum name="roboto_slab_light" value="19"/>
         <enum name="roboto_slab_regular" value="20"/>
         <enum name="roboto_slab_bold" value="21"/>
+        <enum name="bebas" value="22"/>
     </attr>
 
 </resources>
