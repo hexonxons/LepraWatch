@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hexonxons.lepradroid.view.DrawerElementView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_element"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@drawable/navigation_element_background" >
+    
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/drawer_element_primary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/drawer_element_icon"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/navigation_drawer_text"
+        app:typeface="roboto_regular" />
+    
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/drawer_element_secondary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        app:typeface="roboto_regular" />
+
+    <ImageView
+        android:id="@+id/drawer_element_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:padding="4dp"/>
+
+</com.hexonxons.lepradroid.view.DrawerElementView>

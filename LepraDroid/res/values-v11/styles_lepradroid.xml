@@ -2,5 +2,7 @@
 <resources>
     <style name="Theme.Lepradroid" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:editTextBackground">@drawable/lepradroid_edit_text_holo_light</item>
+        
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_handle</item>
     </style>
 </resources>

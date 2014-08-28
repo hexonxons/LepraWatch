@@ -1,21 +1,22 @@
 package com.hexonxons.lepradroid.fragment;
 
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.hexonxons.lepradroid.MainActivity;
 import com.hexonxons.lepradroid.R;
-import com.hexonxons.lepradroid.util.CONSTANTS;
+import com.hexonxons.lepradroid.system.Constants;
 
 public class AuthFragment extends Fragment
 {
@@ -24,21 +25,56 @@ public class AuthFragment extends Fragment
     private EditText mLoginEditText     = null;
     private EditText mPasswordEditText  = null;
     
-    @Override
-    public void onResume()
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver()
     {
-        super.onResume();
-        
-        ActionBar actionBar = ((ActionBarActivity)getActivity()).getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setHomeButtonEnabled(false);
-        
-        ((MainActivity)getActivity()).setDrawerEnabled(false);
-    }
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            switch(intent.getAction())
+            {
+                case Constants.INTENT_FILTER.ACTION_AUTH_FAIL:
+                {
+                    AuthDialogFragment fragment = (AuthDialogFragment) getActivity().getFragmentManager().findFragmentByTag(AuthDialogFragment.TAG);
+                    Dialog authDialog = fragment.getDialog();
+                    
+                    TextView authDialogMessage = (TextView) authDialog.findViewById(R.id.auth_text);
+                    authDialogMessage.setText(intent.getStringExtra(Constants.BUNDLE.KEY_AUTH));
+                    
+                    authDialog.setCancelable(true);
+                    authDialog.setCanceledOnTouchOutside(true);
+                    
+                    break;
+                }
+                
+                case Constants.INTENT_FILTER.ACTION_AUTH_SUCCESS:
+                {
+                    AuthDialogFragment fragment = (AuthDialogFragment) getActivity().getFragmentManager().findFragmentByTag(AuthDialogFragment.TAG);
+                    fragment.dismiss();
+                    
+                    // Show auth dialog.
+                    AuthDialogFragment dialog = new AuthDialogFragment();
+                    dialog.setCancelable(false);
+                    dialog.show(getActivity().getFragmentManager(), AuthDialogFragment.TAG);
+                    
+                    // Workaround with View.setFitsSystemWindows issue.
+                    // It seems not possible to request fit system windows without activity restart.
+                    getActivity().finish();
+                    getActivity().startActivity(getActivity().getIntent());
+                    
+                    break;
+                }
+                
+                default:
+                {
+                    break;
+                }
+            }
+        }
+    };
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    {        
         ViewGroup mainView = (ViewGroup) inflater.inflate(R.layout.auth, container, false);
         
         mLoginEditText = (EditText) mainView.findViewById(R.id.auth_login_edit);
@@ -49,24 +85,31 @@ public class AuthFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                if(mLoginEditText.getText().toString().length() != 0)
-                {
-                    SharedPreferences preferences = getActivity().getSharedPreferences(CONSTANTS.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-                    Editor editor = preferences.edit();
-                    editor.putString(CONSTANTS.SHARED_PREFERENCES_USERNAME, mLoginEditText.getText().toString());
-                    editor.commit();
-                    
-                    ((MainActivity)getActivity()).setActionBarEnabled(true);
-                    
-                    getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.main_wrapper, new MainFragment(), MainFragment.TAG)
-                        .commit();
-                }
+                // Show auth dialog.
+                AuthDialogFragment dialog = new AuthDialogFragment();
+                dialog.setCancelable(false);
+                dialog.show(getActivity().getFragmentManager(), AuthDialogFragment.TAG);
+                
+                // Send auth intent.
+                Intent intent = new Intent(Constants.INTENT_FILTER.ACTION_AUTH);
+                intent.putExtra(Constants.BUNDLE.KEY_USERNAME, mLoginEditText.getText().toString());
+                intent.putExtra(Constants.BUNDLE.KEY_PASSWORD, mPasswordEditText.getText().toString());
+                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
             }
         });
         
         return mainView;
+    }
+    
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constants.INTENT_FILTER.ACTION_AUTH_FAIL);
+        filter.addAction(Constants.INTENT_FILTER.ACTION_AUTH_SUCCESS);
+        
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mBroadcastReceiver, filter);
     }
 }

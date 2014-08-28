@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:state_pressed="true">
-        <color android:color="@color/lepra_login_button_pressed"/>
+        <color android:color="@color/light_blue_700"/>
     </item>
     <item>
-        <color android:color="@color/lepra_login_button"/>
+        <color android:color="@color/light_blue_500"/>
     </item>
 </selector>

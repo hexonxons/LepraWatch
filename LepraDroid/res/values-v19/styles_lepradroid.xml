@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="Theme.Lepradroid" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_lepradroid</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Lepradroid</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Lepradroid</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Lepradroid</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Lepradroid</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Lepradroid</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_lepradroid</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_lepradroid</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Lepradroid</item>
+        
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/light_blue_500</item>
+        
+                <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.Lepradroid.Widget</item>
+        
+                <!-- Edittext style -->
+        <item name="android:editTextStyle">@style/EditTextlepradroid</item>
+        
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_handle</item>
+        
+    </style>
+    
+    <style name="ActionBar.Solid.Lepradroid" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_lepradroid</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_lepradroid</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_lepradroid</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Lepradroid</item>
+    </style>
+    
+    <style name="ActionBar.Transparent.Lepradroid" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_lepradroid</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Lepradroid</item>
+    </style>
+    
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Lepradroid.Widget" parent="@style/Theme.AppCompat">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Lepradroid</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Lepradroid</item>
+    </style>
+    
+</resources>

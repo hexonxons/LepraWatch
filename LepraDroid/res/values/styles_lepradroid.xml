@@ -17,7 +17,7 @@
      limitations under the License.
 -->
 
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Theme.Lepradroid" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarItemBackground">@drawable/selectable_background_lepradroid</item>
@@ -35,12 +35,15 @@
         
                 <!-- Edittext style -->
         <item name="android:editTextStyle">@style/EditTextlepradroid</item>
-
+        
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_handle</item>
+        
     </style>
     
     <style name="EditTextlepradroid" parent="android:Widget.EditText">
         <item name="android:background">@drawable/lepradroid_edit_text_holo_light</item>
-        <item name="android:textColor">#000000</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
     </style>
 
     <style name="ActionBar.Solid.Lepradroid" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">

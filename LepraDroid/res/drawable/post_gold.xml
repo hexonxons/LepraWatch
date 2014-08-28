@@ -12,7 +12,7 @@
                 android:angle="135"
                 android:centerX="0.3"
                 android:centerColor="#FFFFFF"
-                android:startColor="@color/lepra_gold_gradient"
+                android:startColor="@color/amber_200"
                 android:endColor="#FFFFFF"
                 android:type="linear"/>
         </shape>

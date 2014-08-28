@@ -42,7 +42,11 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="@string/password"
+        android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:maxLines="1"
+        android:nextFocusDown="@+id/auth_login_button"
+        android:nextFocusRight="@+id/auth_login_button"
         app:typeface="roboto_regular" />
 
     <com.devspark.robototextview.widget.RobotoEditText
@@ -53,9 +57,17 @@
         android:layout_alignLeft="@+id/auth_text"
         android:layout_alignRight="@+id/auth_text"
         android:layout_marginTop="10dp"
+        android:ellipsize="end"
         android:ems="10"
         android:hint="@string/login"
-        app:typeface="roboto_regular" />
+        android:imeOptions="actionNext"
+        android:inputType="textVisiblePassword|textNoSuggestions"
+        android:nextFocusDown="@+id/auth_password_edit"
+        android:nextFocusRight="@+id/auth_login_button"
+        app:typeface="roboto_regular" >
+        
+        <requestFocus />
+    </com.devspark.robototextview.widget.RobotoEditText>
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/auth_text"
@@ -65,7 +77,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/app_label"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/lepra_gold"
+        android:textColor="@color/light_blue_500"
         android:textSize="32sp"
         app:typeface="bebas" />
 
