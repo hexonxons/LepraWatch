@@ -9,6 +9,7 @@
     android:dividerHeight="8dp"
     android:listSelector="@android:color/transparent"
     android:padding="8dp"
-    android:scrollingCache="true" >
+    android:scrollingCache="true"
+    android:scrollbarStyle="outsideOverlay" >
 
 </ListView>

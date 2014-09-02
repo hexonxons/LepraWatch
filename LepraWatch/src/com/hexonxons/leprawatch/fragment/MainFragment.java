@@ -192,7 +192,7 @@ public class MainFragment extends Fragment implements OnItemClickListener
                 mDrawer.closeDrawers();
                 
                 // Open posts fragment.
-                getChildFragmentManager().beginTransaction().add(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
+                getChildFragmentManager().beginTransaction().replace(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
                 
                 break;
             }

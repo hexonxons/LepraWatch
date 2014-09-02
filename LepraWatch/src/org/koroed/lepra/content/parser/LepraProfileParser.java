@@ -178,14 +178,4 @@ public class LepraProfileParser extends LepraContentParser<LepraProfile>
         }
         return null;
     }
-    
-    private String getFirstElementText(Document doc, String cssQuery)
-    {
-        Element e = doc.select(cssQuery).first();
-        if(e != null)
-        {
-            return e.text();
-        }
-        return null;
-    }
 }

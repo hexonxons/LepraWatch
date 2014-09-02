@@ -7,6 +7,7 @@ import org.koroed.lepra.content.LepraProfileContact;
 import org.koroed.lepra.content.LepraUser;
 
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -184,9 +185,15 @@ public class UserProfileFragment extends Fragment
                 @Override
                 public void onClick(View v)
                 {
-                    Uri uri = Uri.parse(((RobotoTextView) v.findViewById(R.id.user_profile_contact_element_data)).getText().toString());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                    try
+                    {
+                        Uri uri = Uri.parse(((RobotoTextView) v.findViewById(R.id.user_profile_contact_element_data)).getText().toString());
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                    catch(ActivityNotFoundException e)
+                    {
+                    }
                 }
             });
             

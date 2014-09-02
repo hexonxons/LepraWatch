@@ -12,7 +12,7 @@
         
         <ImageView
             android:id="@+id/user_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="196dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
