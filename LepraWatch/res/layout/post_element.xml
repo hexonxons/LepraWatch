@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hexonxons.leprawatch.view.PostElementView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@drawable/card_background" >
+
+    <LinearLayout
+        android:id="@+id/post_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:orientation="vertical" />
+
+    <View
+        android:id="@+id/post_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/post_info_author"
+        android:background="@color/navigation_drawer_divider" />
+
+    <RelativeLayout
+        android:id="@+id/post_info_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/post_divider"
+        android:background="@drawable/post_gold"
+        android:clickable="true"
+        android:visibility="visible" >
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_info_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/lepra_gray"
+            android:gravity="center"
+            android:minWidth="32dp"
+            android:padding="2dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/white"
+            app:typeface="roboto_bold" />
+
+        <ImageView
+            android:id="@+id/post_info_comments_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_comments" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/post_info_comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/post_info_comments_icon"
+            android:gravity="top"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            app:typeface="roboto_regular" />
+
+    </RelativeLayout>
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/post_info_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/post_message"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        app:typeface="roboto_regular" />
+    
+</com.hexonxons.leprawatch.view.PostElementView>

@@ -1,0 +1,187 @@
+<resources>
+    <string name="app_name">LeprаWatch</string>
+    
+    <string name="app_label">LEPRAWATCH</string>
+    
+    <string name="main_drawer_open">Открыть</string>
+    <string name="main_drawer_close">Закрыть</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="show_password">Показать пароль</string>
+    <string name="login_button">Войти</string>
+    
+    <string name="navigation_my">Мои вещи</string>
+    <string name="navigation_main">Главная</string>
+    <string name="navigation_favorites">Избранное</string>
+    <string name="navigation_inbox">Инбокс</string>
+    <string name="navigation_subsites">Подлепры</string>
+    <string name="navigation_election">Выборы</string>
+    <string name="navigation_election_live">• LIVE</string>
+    
+    <string name="write_man">Написал</string>
+    <string name="write_woman">Написала</string>
+    
+    <string name="comments_text_one">комментарий</string>
+    <string name="comments_text_few">комментария</string>
+    <string name="comments_text_other">комментариев</string>
+    
+    <string name="comments_one">новый</string>
+    <string name="comments_other">новых</string>
+    
+    <string name="post_date_today">сегодня в</string>
+    <string name="post_date_yesterday">вчера в</string>
+    
+    <string name="action_new_post">Новый пост</string>
+    <string name="action_search">Поиск</string>
+    
+    <string name="post_menu_favorites">В избранное</string>
+    <string name="post_menu_my">В мои вещи</string>
+    <string name="post_menu_author">Профиль автора</string>
+    <string name="post_menu_share">Расшарить пост</string>
+    <string name="post_menu_hide">Спрятать пост</string>
+    
+    <string name="auth_wait">Подождите</string>
+    
+    <string name="profile_male_parent">Зарегистрирован по приглашению </string>
+    <string name="profile_female_parent">Зарегистрирована по приглашению </string>
+    
+    <string name="plus">ПЛЮС</string>
+    <string name="minus">МИНУС</string>
+    
+    <string-array name="user_titles">
+        <item>ПРОФИЛЬ</item>
+        <item>ПОСТЫ</item>
+        <item>КОММЕНТАРИИ</item>
+    </string-array>
+    
+    <string-array name="drawer_list_labels">
+        <item>Мои вещи</item>
+        <item>Главная</item>
+        <item>Избранное</item>
+        <item>Инбокс</item>
+        <item>Подлепры</item>
+        <item>Выборы</item>
+        <item>Настройки</item>
+        <item>Выход</item>
+        <item>О приложении</item>
+    </string-array>
+    
+    <string-array name="drawer_list_icons">
+        <item>@drawable/ic_action_favorite</item>
+        <item>@drawable/ic_action_view_as_list</item>
+        <item>@drawable/ic_action_important</item>
+        <item>@drawable/ic_action_unread</item>
+        <item>@drawable/ic_action_group</item>
+        <item>@drawable/ic_action_poll</item>
+        <item>@drawable/ic_action_settings</item>
+        <item>@drawable/ic_action_logout</item>
+        <item>@drawable/ic_action_about</item>
+    </string-array>
+    
+    <string-array name="post_menu">
+        <item>В мои вещи</item>
+        <item>В избранное</item>
+        <item>Профиль автора</item>
+        <item>Расшарить пост</item>
+        <item>Спрятать пост</item>
+    </string-array>
+    
+    <string-array name="welcome_text">
+        <item>15M 7 on 1 Comp StOmP No AiR NO ZeRG RUSH!!1!" — lerpousername 1597.</item>
+        <item>An nescis, mi fili, quantilla sapientia mundus regatur?</item>
+        <item>Who in the world has Chinese food for breakfast? The Chinese?</item>
+        <item>lerpousername, lerpousername…</item>
+        <item>*** STOP (0x0000000A, 0x0000000A, 0x0000000A, 0x0000000A) IRQ_NOT_LESS_OR_EQUAL, lerpousername.</item>
+        <item>Artichokes play football. Purple monkeys dance invisibly.</item>
+        <item>Bite my shiny metal ass, lerpousername.</item>
+        <item>Cпасибо, что зашли, lerpousername.</item>
+        <item>Don’t panic, lerpousername!</item>
+        <item>F5, lerpousername.</item>
+        <item>If you got cojones, come on, mette mano.</item>
+        <item>Jah’d never let us down, lerpousername.</item>
+        <item>Russian sounds sexy, lerpousername!</item>
+        <item>Solutions are not the answer, lerpousername.</item>
+        <item>Soviet Russia owns teh Intarnet, lerpousername.</item>
+        <item>Tetris is so unrealistic, lerpousername</item>
+        <item>They killed lerpousername. Bastards!</item>
+        <item>You found piles and piles of gold! Keep Clicking! Click like the wind!</item>
+        <item>You have completed more work units than 89,795% of our users, lerpousername.</item>
+        <item>fapfapfapfapfapfap, lerpousername!</item>
+        <item>hakkabah hakkabah we hate the usa hakkabah marrakesh hakkabah, lerpousername.</item>
+        <item>ž 5;ة العرب¡ 0;ة, ج, lerpousername.</item>
+        <item>А мы построим свой Лунапарк, lerpousername! С блекджеком и шлюхами!</item>
+        <item>А ты знаешь, в чем соль, lerpousername?</item>
+        <item>А ты пробовал лизать октаэдр, lerpousername?</item>
+        <item>А что ты можешь противопоставить бездушной американской машине, lerpousername?</item>
+        <item>Аллах прекрасен и любит всё прекрасное, lerpousername.</item>
+        <item>Анекдоты о блондинках высмеивают арийский тип, lerpousername!</item>
+        <item>Береги колени, lerpousername</item>
+        <item>Благословен ты в городе, и благословен на поле, lerpousername.</item>
+        <item>В наборе детских кубиков буквы «Х», «У» и «Й» всегда находятся на одном кубике, lerpousername</item>
+        <item>В среду выборы, lerpousername</item>
+        <item>Ваш горизонт завален, lerpousername.</item>
+        <item>Вообще—то я не религиозный человек, но если ты есть там наверху, спаси меня, lerpousername.</item>
+        <item>Вред от курения вообще не доказан, это просто байка, lerpousername.</item>
+        <item>Все что вы сдесь видете, далжно оставатся сикретам, lerpousername.</item>
+        <item>Вы ввели неправильное имя или пароль, lerpousername, попробуйте еще раз.</item>
+        <item>Вы не дождетесь новых приветствий, lerpousername.</item>
+        <item>Вы не ошиблись дверью, lerpousername?</item>
+        <item>Вы просто созданы для лепрозория, lerpousername!</item>
+        <item>Вы тоже имеете право на личную жизнь, lerpousername.</item>
+        <item>Высокохохолковый пингвин, lerpousername, это единственный пингвин в мире, который может шевелить своим хохолком.</item>
+        <item>Где мой йогурт, lerpousername?</item>
+        <item>Геббельс был ученым, поэтом и музыкантом, lerpousername.</item>
+        <item>Глаз страуса больше, чем его мозг, lerpousername.</item>
+        <item>Деларова Евгения Евгеньевна нашлась, lerpousername!</item>
+        <item>Если руки золотые, то не важно откуда они растут, lerpousername.</item>
+        <item>Жизнь справедлива только к неграм, lerpousername.</item>
+        <item>Задумали самореализоваться на лепре, lerpousername?</item>
+        <item>Зато у тебя есть доступ на Лепру, lerpousername.</item>
+        <item>Затоптать муравья не так просто, как кажется, lerpousername.</item>
+        <item>Здравствуйте, lerpousername.</item>
+        <item>Из человека получается семь кусков мыла, lerpousername!</item>
+        <item>Индейка — единственный зверь хитрее человека, lerpousername.</item>
+        <item>Кто спит — тот видит только сны, lerpousername.</item>
+        <item>Куда вы дели мой ваучер, lerpousername?</item>
+        <item>Купите икону «Неупиваемая чаша» и молитесь, lerpousername!</item>
+        <item>Лепрозорий — простреленное колено Израилево, lerpousername.</item>
+        <item>Люди в тюрьме меньше времени сидят, чем вы на Лепре, lerpousername.</item>
+        <item>Мне нужна твоя одежда и мотоцикл, lerpousername.</item>
+        <item>Мы верим в ваc, lerpousername. Нет, правда.</item>
+        <item>Мы надеемся, что вы любите Новое Правительство, lerpousername.</item>
+        <item>Надеюсь, приятно проводите время, lerpousername.</item>
+        <item>Надо делать то, что нужно людям, а не то, чем мы занимаемся, lerpousername.</item>
+        <item>Не верьте тому, что пишут перед вашим псевдонимом, lerpousername.</item>
+        <item>Нет, lerpousername, учёные не такие дураки!</item>
+        <item>Носороги не играют в игры, lerpousername.</item>
+        <item>Ну и отлично, lerpousername!</item>
+        <item>Он выпустил на свободу Разум биологов, lerpousername!</item>
+        <item>Патрис Лумумба родился 2 июля, lerpousername!</item>
+        <item>Паша Цветомузыка жив, lerpousername</item>
+        <item>Передайте женщине соль, lerpousername.</item>
+        <item>Подростки — не целевая аудитория табачных компаний, lerpousername.</item>
+        <item>Позолоти пост, lerpousername, дорогой!</item>
+        <item>Попасть сюда сложно, lerpousername. Выход не могут найти даже старожилы.</item>
+        <item>Попытка — первый шаг к провалу, lerpousername.</item>
+        <item>По тебе плачет эстрада, lerpousername.</item>
+        <item>Прислушивайтесь к голосам в вашей голове, lerpousername.</item>
+        <item>Продолжайте кликать! Во имя всего святого, продолжайте кликать!</item>
+        <item>Реквизит должен быть съеден, lerpousername</item>
+        <item>Самоубийцы дискредитировали самоубийство, lerpousername.</item>
+        <item>Сегодня вас ждёт приятная неожиданность, lerpousername!</item>
+        <item>Слово «ЙА» — можно написать одной буквой, lerpousername.</item>
+        <item>Ссылка, она для кого — наказание, а для кого — отдых, lerpousername.</item>
+        <item>Тут никого нет, lerpousername! Никого! Никого, кроме тебя!</item>
+        <item>У вас есть такая проблема, что дерьмо прилипает к шерсти, lerpousername?</item>
+        <item>У нас тут все либо умные, либо красивые, а вы хоть разорвитесь, lerpousername.</item>
+        <item>Увидел, запостил, в бан-лист! Увидел, запостил, в бан-лист! Романтика!</item>
+        <item>Хочешь новых прикольных рингтонов? Выпрыгни в окно, lerpousername!</item>
+        <item>Что общего у Майкла Джексона и Нила Армстронга? Лунная походка.</item>
+        <item>Шоколад ни в чем не виноват, lerpousername.</item>
+        <item>Я видел «17 мгновений весны» на китайском, lerpousername.</item>
+        <item>Я слежу за тобой, lerpousername. И ты мне нравишься. (NOT GAY)</item>
+        <item>— Алло это прачечная? — Упячечная, lerpousername.</item>
+        <item>Элсо, lerpousername — так пишет только конченная вендупсня, $username.</item>
+        <item>lerpousername ненавидит детский сад</item>
+    </string-array>
+</resources>

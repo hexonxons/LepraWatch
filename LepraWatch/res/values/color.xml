@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FFEEEEEE</color>
+    <color name="lepra_gray">#FF7F7F7F</color>
+    <color name="lepra_red">#FFCC0000</color>
+    <color name="lepra_black">#FF171717</color>
+    <color name="lepra_login_background">#FF7FB17A</color>
+    
+    <color name="navigation_drawer_divider">#FFD3D3D3</color>
+    <color name="navigation_drawer_background">#FFF5F5F5</color>
+    <color name="navigation_drawer_pressed">#FFE2E2E2</color>
+    <color name="navigation_drawer_text">#99333333</color>
+    
+    <color name="light_blue_500">#FF03A9F4</color>
+    <color name="light_blue_700">#FF0288D1</color>
+    
+    <color name="pink_500">#FFE91E63</color>
+    
+    <color name="amber_500">#FFFFC107</color>
+    <color name="amber_200">#FFFFE082</color>
+    
+    <color name="orange_500">#FFFF5722</color>
+    <color name="orange_200">#FFFFAB91</color>
+    
+    <color name="green_500">#FF259B24</color>
+    <color name="green_200">#FF72d572</color>
+    
+    <color name="red_500">#FFE51C23</color>
+    
+    <color name="text_primary">#DE000000</color>
+    <color name="text_secondary">#8A000000</color>
+    <color name="text_hint">#42000000</color>
+    
+</resources>
