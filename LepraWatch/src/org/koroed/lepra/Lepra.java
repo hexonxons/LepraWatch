@@ -204,7 +204,7 @@ public class Lepra
     
     public boolean isAuthorized()
     {
-        return mLepraContext != null && mLepraContext.user.id != Integer.MIN_VALUE;
+        return mLepraContext != null && mLepraContext.user != null && mLepraContext.user.id != Integer.MIN_VALUE;
     }
     
     public LepraStatus getLepraStatus()
