@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
-    android:background="@drawable/card_background" >
+    android:background="@drawable/post_element_background" >
 
     <LinearLayout
         android:id="@+id/post_message"
@@ -13,7 +13,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_margin="8dp"
-        android:clickable="true"
         android:orientation="vertical" />
 
     <View
@@ -22,7 +21,7 @@
         android:layout_height="1.5dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/post_author"
-        android:background="@color/navigation_drawer_divider" />
+        android:background="@drawable/post_element_divider" />
 
     <RelativeLayout
         android:id="@+id/post_info_wrapper"
@@ -32,7 +31,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/post_divider"
         android:background="@drawable/post_gold"
-        android:clickable="true"
         android:visibility="visible" >
 
         <com.devspark.robototextview.widget.RobotoTextView

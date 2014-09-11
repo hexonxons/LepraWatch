@@ -9,6 +9,8 @@ import java.util.TimeZone;
 
 import org.koroed.lepra.content.LepraPost;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,8 +30,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -53,6 +56,26 @@ public class PostsFragment extends Fragment
     private long mYesterdayBegin                = Long.MIN_VALUE;
     // DateFormatter
     private SimpleDateFormat mSimpleDateFormat  = null;
+    
+    private OnItemClickListener mItemClickListener  = new OnItemClickListener()
+    {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            Bundle args = new Bundle();
+            args.putParcelable(Constants.BUNDLE.KEY_POST, mPosts.get(position));
+            
+            CommentsFragment fragment = new CommentsFragment();
+            fragment.setArguments(args);
+            
+            getFragmentManager()
+                .beginTransaction()
+                //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out, android.R.animator.fade_in, android.R.animator.fade_out)
+                .replace(R.id.main_wrapper, fragment, CommentsFragment.TAG)
+                .addToBackStack(CommentsFragment.TAG)
+                .commit();
+        }
+    };
     
     private final BroadcastReceiver mBroadcastReceiver  = new BroadcastReceiver()
     {
@@ -90,6 +113,7 @@ public class PostsFragment extends Fragment
                     ListView listView = (ListView) wrapper.findViewById(R.id.posts_list);
                     listView.setAdapter(new PostsAdapter());
                     listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
+                    listView.setOnItemClickListener(mItemClickListener);
                     
                     break;
                 }
@@ -140,9 +164,11 @@ public class PostsFragment extends Fragment
         {
             // Inflate posts list.
             inflater.inflate(R.layout.posts_list, wrapper, true);
+            
             ListView listView = (ListView) wrapper.findViewById(R.id.posts_list);
             listView.setAdapter(new PostsAdapter());
             listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
+            listView.setOnItemClickListener(mItemClickListener);
         }
         
         return wrapper;
@@ -163,6 +189,22 @@ public class PostsFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
         inflater.inflate(R.menu.main_menu, menu);
+    }
+    
+    /**
+     * {@link https://code.google.com/p/android/issues/detail?id=25994} workaround.
+     */
+    @Override
+    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim)
+    {
+        if(enter)
+        {
+            return AnimatorInflater.loadAnimator(getActivity(), android.R.animator.fade_in);
+        }
+        else
+        {
+            return AnimatorInflater.loadAnimator(getActivity(), android.R.animator.fade_out);
+        }
     }
     
     @Override
@@ -217,20 +259,6 @@ public class PostsFragment extends Fragment
             }
             
             view.messageWrapper.removeAllViews();
-            view.messageWrapper.setOnClickListener(new OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    Bundle args = new Bundle();
-                    args.putParcelable(Constants.BUNDLE.KEY_POST, post);
-                    
-                    CommentsFragment fragment = new CommentsFragment();
-                    fragment.setArguments(args);
-                    
-                    getFragmentManager().beginTransaction().replace(R.id.main_wrapper, fragment, CommentsFragment.TAG).addToBackStack(CommentsFragment.TAG).commit();
-                }
-            });
             
             // Build author text.
             SpannableStringBuilder authorBuilder = new SpannableStringBuilder();
@@ -254,11 +282,11 @@ public class PostsFragment extends Fragment
             Date date = new Date(post.date);
             if(post.date >= mTodayBegin)
             {
-                authorBuilder.append(", " + res.getText(R.string.post_date_today) + " " + DateFormat.format("kk:mm", date));
+                authorBuilder.append(", " + res.getText(R.string.date_today) + " " + DateFormat.format("kk:mm", date));
             }
             else if(post.date >= mYesterdayBegin)
             {
-                authorBuilder.append(", " + res.getText(R.string.post_date_yesterday) + " " + DateFormat.format("kk:mm", date));
+                authorBuilder.append(", " + res.getText(R.string.date_yesterday) + " " + DateFormat.format("kk:mm", date));
             }
             else
             {

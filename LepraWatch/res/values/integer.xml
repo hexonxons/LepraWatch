@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="post_menu_width">180dp</dimen>
+    <dimen name="comments_header_bottom_margin">8dp</dimen>
+    <dimen name="comments_offset_circle_size">5dp</dimen>
+    <dimen name="comments_offset_circle_margin">2dp</dimen>
 </resources>

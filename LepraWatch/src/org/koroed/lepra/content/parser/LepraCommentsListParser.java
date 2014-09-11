@@ -69,7 +69,7 @@ public class LepraCommentsListParser extends LepraContentParser<ArrayList<LepraC
         int id = Integer.valueOf(doc.select(".comment").attr("id"));
         int parentId = Integer.MIN_VALUE;
         
-        String parentCommentId = doc.select(".data-parent_comment_id").text();
+        String parentCommentId = doc.select(".comment").attr("data-parent_comment_id");
         if(!StringUtils.isEmpty(parentCommentId))
         {
             parentId = Integer.valueOf(parentCommentId);

@@ -28,8 +28,8 @@
     <string name="comments_one">новый</string>
     <string name="comments_other">новых</string>
     
-    <string name="post_date_today">сегодня в </string>
-    <string name="post_date_yesterday">вчера в </string>
+    <string name="date_today">сегодня в </string>
+    <string name="date_yesterday">вчера в </string>
     
     <string name="action_new_post">Новый пост</string>
     <string name="action_search">Поиск</string>

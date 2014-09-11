@@ -10,6 +10,8 @@ import java.util.TimeZone;
 import org.koroed.lepra.content.LepraComment;
 import org.koroed.lepra.content.LepraPost;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,6 +26,7 @@ import android.text.SpannableStringBuilder;
 import android.text.format.DateFormat;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.util.SparseIntArray;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.HeaderViewListAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,7 +52,7 @@ public class CommentsFragment extends Fragment
 {
     public static final String TAG  = "CommentsFragment";
     
-    // Posts list.
+    // Comments list.
     private ArrayList<LepraComment> mComments   = null;
     // Today begin time.
     private long mTodayBegin                    = Long.MIN_VALUE;
@@ -64,6 +68,10 @@ public class CommentsFragment extends Fragment
     private ListView mListView                  = null;
     // Current checked position
     private int mCurrentCheckedPosition         = ListView.INVALID_POSITION;
+    // Loading view
+    private View mLoadingView                   = null;
+    // Map offset level to parent comment.
+    private SparseIntArray mOffsetMap           = new SparseIntArray();
     
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback()
     {
@@ -114,7 +122,6 @@ public class CommentsFragment extends Fragment
                 mListView.setItemChecked(position, true);
                 mCurrentCheckedPosition = position;
             }
-            
         }
     };
     
@@ -145,17 +152,11 @@ public class CommentsFragment extends Fragment
                     mYesterdayBegin = calendar.getTime().getTime();
                     
                     // Remove loading view.
-                    ViewGroup wrapper = (ViewGroup) getView().findViewById(R.id.fragment_wrapper);
-                    wrapper.removeAllViews();
+                    mListView.removeFooterView(mLoadingView);
+                    mLoadingView = null;
                     
-                    // Inflate posts layout.
-                    getActivity().getLayoutInflater().inflate(R.layout.comments_list, wrapper, true);
-                    
-                    mListView = (ListView) wrapper.findViewById(R.id.post_comments_list);
-                    mListView.setAdapter(new PostCommentsAdapter());
-                    mListView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
-                    mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-                    mListView.setOnItemClickListener(mItemClickListener);
+                    // Update listview.
+                    ((CommentsAdapter)((HeaderViewListAdapter)mListView.getAdapter()).getWrappedAdapter()).notifyDataSetChanged();
                     
                     break;
                 }
@@ -187,31 +188,28 @@ public class CommentsFragment extends Fragment
             mComments = savedInstanceState.getParcelableArrayList(Constants.BUNDLE.KEY_COMMENTS);
         }
         
-        ViewGroup wrapper = (ViewGroup) inflater.inflate(R.layout.fragment_wrapper, container, false);
+        mListView = (ListView) inflater.inflate(R.layout.comments_list, container, false);
+        mListView.setAdapter(new CommentsAdapter());
+        mListView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
+        mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        mListView.setOnItemClickListener(mItemClickListener);
+        
+        mListView.addHeaderView(createPostView());
         
         if(mComments == null)
         {
             // Inflate loading layout.
-            inflater.inflate(R.layout.loading, wrapper, true);
+            mLoadingView = inflater.inflate(R.layout.loading, mListView, false);
+            // Add loadind view to listview bottom.
+            mListView.addFooterView(mLoadingView, null, false);
             
             // Send request intent.
             Intent intent = new Intent(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS);
             intent.putExtra(Constants.BUNDLE.KEY_POST, mLepraPost);
             LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
         }
-        else
-        {
-            // Inflate posts list.
-            inflater.inflate(R.layout.comments_list, wrapper, true);
-            
-            mListView = (ListView) wrapper.findViewById(R.id.post_comments_list);
-            mListView.setAdapter(new PostCommentsAdapter());
-            mListView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
-            mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            mListView.setOnItemClickListener(mItemClickListener);
-        }
         
-        return wrapper;
+        return mListView;
     }
     
     @Override
@@ -224,7 +222,7 @@ public class CommentsFragment extends Fragment
         filter.addAction(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS_RESULT_SUCCESS);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mBroadcastReceiver, filter);
         
-        if(mListView != null && mListView.getCheckedItemPosition() != ListView.INVALID_POSITION)
+        if(mListView.getCheckedItemPosition() != ListView.INVALID_POSITION)
         {
             mActionMode = getActivity().startActionMode(mActionModeCallback);
             mCurrentCheckedPosition = mListView.getCheckedItemPosition();
@@ -235,6 +233,22 @@ public class CommentsFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
         inflater.inflate(R.menu.main_menu, menu);
+    }
+    
+    /**
+     * {@link https://code.google.com/p/android/issues/detail?id=25994} workaround.
+     */
+    @Override
+    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim)
+    {
+        if(enter)
+        {
+            return AnimatorInflater.loadAnimator(getActivity(), android.R.animator.fade_in);
+        }
+        else
+        {
+            return AnimatorInflater.loadAnimator(getActivity(), android.R.animator.fade_out);
+        }
     }
     
     @Override
@@ -256,12 +270,59 @@ public class CommentsFragment extends Fragment
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mBroadcastReceiver);
     }
     
-    private class PostCommentsAdapter extends BaseAdapter
+    public View createPostView()
+    {
+        CommentElementView view = (CommentElementView) getActivity().getLayoutInflater().inflate(R.layout.comments_header, mListView, false);
+        
+        // Build author text.
+        SpannableStringBuilder authorBuilder = new SpannableStringBuilder();
+        // Gender text. (Написал/Написала)
+        authorBuilder.append((mLepraPost.userGender.compareTo("male") == 0 ? getResources().getText(R.string.write_man) : getResources().getText(R.string.write_woman)) + " ");
+        // Rank.
+        if(mLepraPost.userTitle.length() != 0)
+        {
+            authorBuilder.append(mLepraPost.userTitle + " ");
+        }
+        int authorStart = authorBuilder.length();
+        // Nickname text.
+        authorBuilder.append(mLepraPost.userLogin);
+        int authorEnd = authorBuilder.length();
+        // Nickname color.
+        authorBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(mLepraPost.userGender.compareTo("male") == 0 ? R.color.light_blue_500 : R.color.pink_500)), authorStart, authorEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // Bold style.
+        authorBuilder.setSpan(new StyleSpan(Typeface.BOLD), authorStart, authorEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        
+        // Date.
+        Date date = new Date(mLepraPost.date);
+        if(mLepraPost.date >= mTodayBegin)
+        {
+            authorBuilder.append(", " + getResources().getText(R.string.date_today) + " " + DateFormat.format("kk:mm", date));
+        }
+        else if(mLepraPost.date >= mYesterdayBegin)
+        {
+            authorBuilder.append(", " + getResources().getText(R.string.date_yesterday) + " " + DateFormat.format("kk:mm", date));
+        }
+        else
+        {
+            authorBuilder.append(", " + DateFormat.format("yyyy-MM-dd", date) + " в " + DateFormat.format("kk:mm", date));
+        }
+        
+        view.author.setText(authorBuilder);
+        view.rating.setText("" + mLepraPost.rating);
+        
+        TextView text = new TextView(getActivity());
+        text.setText(mLepraPost.content);
+        view.messageWrapper.addView(text, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        
+        return view;
+    }
+    
+    private class CommentsAdapter extends BaseAdapter
     {
         @Override
         public int getCount()
         {
-            return mComments.size();
+            return mComments == null ? 0 : mComments.size();
         }
         
         @Override
@@ -292,6 +353,20 @@ public class CommentsFragment extends Fragment
             
             LepraComment comment = mComments.get(position);
             
+            int offsetLevel = 0;
+            
+            if(comment.parentId == Integer.MIN_VALUE)
+            {
+                mOffsetMap.append(comment.id, offsetLevel);
+            }
+            else
+            {
+                offsetLevel = mOffsetMap.get(comment.parentId) + 1;
+                mOffsetMap.append(comment.id, offsetLevel);
+            }
+            
+            view.offset.setCommentOffset(offsetLevel);
+            
             // Build author text.
             SpannableStringBuilder authorBuilder = new SpannableStringBuilder();
             // Gender text. (Написал/Написала)
@@ -314,18 +389,33 @@ public class CommentsFragment extends Fragment
             Date date = new Date(comment.date);
             if(comment.date >= mTodayBegin)
             {
-                authorBuilder.append(", " + res.getText(R.string.post_date_today) + " " + DateFormat.format("kk:mm", date));
+                authorBuilder.append(", " + res.getText(R.string.date_today) + " " + DateFormat.format("kk:mm", date));
             }
             else if(comment.date >= mYesterdayBegin)
             {
-                authorBuilder.append(", " + res.getText(R.string.post_date_yesterday) + " " + DateFormat.format("kk:mm", date));
+                authorBuilder.append(", " + res.getText(R.string.date_yesterday) + " " + DateFormat.format("kk:mm", date));
             }
             else
             {
                 authorBuilder.append(", " + DateFormat.format("yyyy-MM-dd", date) + " в " + DateFormat.format("kk:mm", date));
             }
             view.author.setText(authorBuilder);
-            view.rating.setText("" + comment.rating);
+            
+            if(comment.rating > 0)
+            {
+                view.rating.setText("+" + comment.rating);
+                view.rating.setTextColor(getResources().getColor(R.color.green_500));
+            }
+            else if(comment.rating < 0)
+            {
+                view.rating.setText("" + comment.rating);
+                view.rating.setTextColor(getResources().getColor(R.color.red_500));
+            }
+            else
+            {
+                view.rating.setText("" + comment.rating);
+                view.rating.setTextColor(getResources().getColor(R.color.lepra_gray));
+            }
             
             TextView text = new TextView(getActivity());
             text.setText(comment.content);
