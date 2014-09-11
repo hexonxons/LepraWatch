@@ -204,7 +204,7 @@ public class Lepra
     
     public boolean isAuthorized()
     {
-        return mLepraContext.user.id != Integer.MIN_VALUE;
+        return mLepraContext != null && mLepraContext.user.id != Integer.MIN_VALUE;
     }
     
     public LepraStatus getLepraStatus()
@@ -249,6 +249,9 @@ public class Lepra
         editor.remove(Constants.SHARED_PREFERENCES.USER_AUTHORIZED);
         
         editor.commit();
+        
+        // Clear lepra context.
+        mLepraContext = null;
     }
     
     public LepraProfile loadProfile(String login)

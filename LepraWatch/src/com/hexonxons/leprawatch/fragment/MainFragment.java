@@ -4,7 +4,6 @@ import java.util.Random;
 
 import org.koroed.lepra.Lepra;
 import org.koroed.lepra.content.LepraContext;
-import org.koroed.lepra.content.LepraPost;
 
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -115,15 +114,6 @@ public class MainFragment extends Fragment implements OnItemClickListener
         if(savedInstanceState == null)
         {
             getFragmentManager().beginTransaction().add(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
-            
-            /*PostsCommentsFragment frag = new PostsCommentsFragment();
-            LepraPost post = new LepraPost();
-            post.id = 1769886;
-            Bundle args = new Bundle();
-            args.putParcelable(Constants.BUNDLE.KEY_POST, post);
-            frag.setArguments(args);
-            
-            getFragmentManager().beginTransaction().add(R.id.main_wrapper, frag, PostsCommentsFragment.TAG).commit();*/
         }
         
         return mDrawer;
