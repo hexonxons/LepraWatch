@@ -1,5 +1,6 @@
 package com.hexonxons.leprawatch.fragment.user;
 
+import org.koroed.lepra.Lepra;
 import org.koroed.lepra.content.LepraUser;
 
 import android.app.Fragment;
@@ -27,7 +28,7 @@ public class UserFragment extends Fragment
     {
         if(savedInstanceState == null)
         {
-            mUser = getArguments().getParcelable(Constants.BUNDLE.KEY_USER);
+            mUser = Lepra.getInstance().getContext().user;//getArguments().getParcelable(Constants.BUNDLE.KEY_USER);
         }
         else
         {

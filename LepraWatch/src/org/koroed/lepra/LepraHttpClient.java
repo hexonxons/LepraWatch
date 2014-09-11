@@ -22,7 +22,9 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
 import org.koroed.lepra.content.parser.LepraContentParser;
 
 /**
@@ -85,6 +87,7 @@ public class LepraHttpClient
             else
             {
                 HttpGet httpGet = new HttpGet(uri);
+                httpGet.addHeader("Content-Type", "text/html; charset=utf-8");
                 response = mHttpClient.execute(httpGet, mContext);
             }
         }
@@ -103,6 +106,8 @@ public class LepraHttpClient
         
         try
         {
+            //String content = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+            
             return parser.parseContent(response.getEntity().getContent());
         }
         catch(IllegalStateException e)
@@ -137,7 +142,7 @@ public class LepraHttpClient
         }
         
         HttpPost request = new HttpPost(uri);
-        request.setEntity(new UrlEncodedFormEntity(params));
+        request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
         
         return request;
     }

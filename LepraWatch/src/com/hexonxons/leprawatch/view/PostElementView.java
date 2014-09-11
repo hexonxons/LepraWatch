@@ -47,7 +47,7 @@ public class PostElementView extends RelativeLayout
         super.onFinishInflate();
         
         messageWrapper = (LinearLayout) findViewById(R.id.post_message);
-        author = (TextView) findViewById(R.id.post_info_author);
+        author = (TextView) findViewById(R.id.post_author);
         
         infoWrapper = (ViewGroup) findViewById(R.id.post_info_wrapper);
         commentsCount = (TextView) findViewById(R.id.post_info_comments_count);

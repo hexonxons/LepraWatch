@@ -19,8 +19,7 @@
         android:theme="@style/Theme.LepraWatch" >
         
         <activity
-            android:name="com.hexonxons.leprawatch.MainActivity"
-            android:theme="@style/Theme.LepraWatch">
+            android:name="com.hexonxons.leprawatch.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

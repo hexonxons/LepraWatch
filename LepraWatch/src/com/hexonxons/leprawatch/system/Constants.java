@@ -16,6 +16,10 @@ public class Constants
         public static final String ACTION_GET_POSTS_RESULT_FAIL     = "ACTION_GET_POSTS_RESULT_FAIL";
         public static final String ACTION_GET_POSTS_RESULT_SUCCESS  = "ACTION_GET_POSTS_RESULT_SUCCESS";
         
+        public static final String ACTION_GET_POST_COMMENTS                 = "ACTION_GET_POST_COMMENTS";
+        public static final String ACTION_GET_POST_COMMENTS_RESULT_FAIL     = "ACTION_GET_POST_COMMENTS_RESULT_FAIL";
+        public static final String ACTION_GET_POST_COMMENTS_RESULT_SUCCESS  = "ACTION_GET_POST_COMMENTS_RESULT_SUCCESS";
+        
         public static final String ACTION_GET_PROFILE                   = "ACTION_GET_PROFILE";
         public static final String ACTION_GET_PROFILE_RESULT_FAIL       = "ACTION_GET_PROFILE_RESULT_FAIL";
         public static final String ACTION_GET_PROFILE_RESULT_SUCCESS    = "ACTION_GET_PROFILE_RESULT_SUCCESS";
@@ -64,6 +68,8 @@ public class Constants
         public static final String KEY_PASSWORD     = "KEY_PASSWORD";
         public static final String KEY_USER         = "KEY_USER";
         public static final String KEY_POSTS        = "KEY_POSTS";
+        public static final String KEY_POST         = "KEY_POST";
+        public static final String KEY_COMMENTS     = "KEY_COMMENTS";
         public static final String KEY_USER_PROFILE = "KEY_USER_PROFILE";
     }
 }

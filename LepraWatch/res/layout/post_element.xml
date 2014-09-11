@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
+        android:clickable="true"
         android:orientation="vertical" />
 
     <View
@@ -20,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="1.5dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/post_info_author"
+        android:layout_below="@+id/post_author"
         android:background="@color/navigation_drawer_divider" />
 
     <RelativeLayout
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="8dp"
             android:background="@color/lepra_gray"
             android:gravity="center"
             android:minWidth="32dp"
@@ -55,7 +56,7 @@
             android:layout_height="24dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_comments" />
 
@@ -64,7 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_toRightOf="@+id/post_info_comments_icon"
             android:gravity="top"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -75,17 +78,17 @@
     </RelativeLayout>
 
     <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/post_info_author"
+        android:id="@+id/post_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/post_message"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:textColor="@color/text_secondary"
-        android:textSize="14sp"
+        android:textSize="10sp"
         app:typeface="roboto_regular" />
     
 </com.hexonxons.leprawatch.view.PostElementView>

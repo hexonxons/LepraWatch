@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import org.koroed.lepra.Lepra;
+import org.koroed.lepra.content.LepraComment;
 import org.koroed.lepra.content.LepraPost;
 import org.koroed.lepra.content.LepraProfile;
 import org.koroed.lepra.content.LepraUser;
@@ -167,6 +168,49 @@ public class NetService extends Service
                     break;
                 }
                 
+                case Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS:
+                {
+                    final LepraPost post = intent.getParcelableExtra(Constants.BUNDLE.KEY_POST);
+                    
+                    // Check if task is already queued or running
+                    if(!mPendingTasks.containsEntry(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS, Integer.toString(post.id)) && !mRunningTasks.containsEntry(Constants.INTENT_FILTER.ACTION_GET_PROFILE, Integer.toString(post.id)))
+                    {
+                        mPendingTasks.put(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS, Integer.toString(post.id));
+                        
+                        mMultiThreadExecutor.submit(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                mPendingTasks.remove(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS, Integer.toString(post.id));
+                                mRunningTasks.put(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS, Integer.toString(post.id));
+                                
+                                Intent result = null;
+                                
+                                try
+                                {
+                                    ArrayList<LepraComment> comments = Lepra.getInstance().loadPostComments(post.id);
+                                    
+                                    result = new Intent(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS_RESULT_SUCCESS);
+                                    result.putParcelableArrayListExtra(Constants.BUNDLE.KEY_COMMENTS, comments);
+                                }
+                                catch (Exception e) 
+                                {
+                                    e.printStackTrace();
+                                    result = new Intent(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS_RESULT_FAIL);
+                                }
+                                finally
+                                {
+                                    LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(result);
+                                    mRunningTasks.remove(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS, Integer.toString(post.id));
+                                }
+                            }
+                        });
+                    }
+                    
+                    break;
+                }
+                
                 case Constants.INTENT_FILTER.ACTION_GET_PROFILE:
                 {
                     final LepraUser user = intent.getParcelableExtra(Constants.BUNDLE.KEY_USER);
@@ -220,6 +264,7 @@ public class NetService extends Service
         filter.addAction(Constants.INTENT_FILTER.ACTION_LOGOUT);
         filter.addAction(Constants.INTENT_FILTER.ACTION_GET_POSTS);
         filter.addAction(Constants.INTENT_FILTER.ACTION_GET_PROFILE);
+        filter.addAction(Constants.INTENT_FILTER.ACTION_GET_POST_COMMENTS);
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mBroadcastReceiver, filter);
     };
     

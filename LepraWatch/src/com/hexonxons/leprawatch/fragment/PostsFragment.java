@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
@@ -204,6 +205,10 @@ public class PostsFragment extends Fragment
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
+            Resources res = getResources();
+            
+            final LepraPost post = mPosts.get(position);
+            
             PostElementView view = (PostElementView) convertView;
             
             if(view == null)
@@ -212,10 +217,20 @@ public class PostsFragment extends Fragment
             }
             
             view.messageWrapper.removeAllViews();
-            
-            Resources res = getResources();
-            
-            LepraPost post = mPosts.get(position);
+            view.messageWrapper.setOnClickListener(new OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Bundle args = new Bundle();
+                    args.putParcelable(Constants.BUNDLE.KEY_POST, post);
+                    
+                    CommentsFragment fragment = new CommentsFragment();
+                    fragment.setArguments(args);
+                    
+                    getFragmentManager().beginTransaction().replace(R.id.main_wrapper, fragment, CommentsFragment.TAG).addToBackStack(CommentsFragment.TAG).commit();
+                }
+            });
             
             // Build author text.
             SpannableStringBuilder authorBuilder = new SpannableStringBuilder();
@@ -236,18 +251,20 @@ public class PostsFragment extends Fragment
             authorBuilder.setSpan(new StyleSpan(Typeface.BOLD), authorStart, authorEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             
             // Date.
+            Date date = new Date(post.date);
             if(post.date >= mTodayBegin)
             {
-                authorBuilder.append(", " + res.getText(R.string.post_date_today) + " " + DateFormat.format("kk:mm", new Date(post.date)));
+                authorBuilder.append(", " + res.getText(R.string.post_date_today) + " " + DateFormat.format("kk:mm", date));
             }
             else if(post.date >= mYesterdayBegin)
             {
-                authorBuilder.append(", " + res.getText(R.string.post_date_yesterday) + " " + DateFormat.format("kk:mm", new Date(post.date)));
+                authorBuilder.append(", " + res.getText(R.string.post_date_yesterday) + " " + DateFormat.format("kk:mm", date));
             }
             else
             {
-                authorBuilder.append(", " + DateFormat.format("yyyy-MM-dd hh:mm", new Date(post.date)));
+                authorBuilder.append(", " + DateFormat.format("yyyy-MM-dd", date) + " в " + DateFormat.format("kk:mm", date));
             }
+            
             view.author.setText(authorBuilder);
             
             // Build comments text.

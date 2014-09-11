@@ -138,8 +138,8 @@ public class LepraPostListParser extends LepraContentParser<ArrayList<LepraPost>
         int postIdInt = Integer.valueOf(postId.substring(1, postId.length()));
         
         LepraPost post = new LepraPost();
-        post.postId = postIdInt;
-        post.postLink = postLink;
+        post.id = postIdInt;
+        post.link = postLink;
         post.isGold = isGold;
         
         post.userLogin = userLogin;

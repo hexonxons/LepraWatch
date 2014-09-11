@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.cookie.BasicClientCookie;
+import org.koroed.lepra.content.LepraComment;
 import org.koroed.lepra.content.LepraContext;
 import org.koroed.lepra.content.LepraPost;
 import org.koroed.lepra.content.LepraProfile;
@@ -17,6 +18,7 @@ import org.koroed.lepra.content.LepraUserContext;
 import org.koroed.lepra.content.parser.CurrentUserInfoParser;
 import org.koroed.lepra.content.parser.LepraEmptyContentParser;
 import org.koroed.lepra.content.parser.LepraLoginResponseParser;
+import org.koroed.lepra.content.parser.LepraCommentsListParser;
 import org.koroed.lepra.content.parser.LepraPostListParser;
 import org.koroed.lepra.content.parser.LepraProfileParser;
 import org.koroed.lepra.content.parser.LepraStatusParser;
@@ -54,8 +56,6 @@ public class Lepra
     private int mDefOffset              = 0;
     
     private LepraHttpClient mHttpClient = new LepraHttpClient();
-    
-    
     
     public static Lepra getInstance()
     {
@@ -264,5 +264,13 @@ public class Lepra
         parameters.put("sorting", sorting);
         
         return mHttpClient.loadContent(LepraURI.getPostListURI(leprosorium), parameters, LepraPostListParser.getInstance());
+    }
+    
+    public ArrayList<LepraComment> loadPostComments(int postId)
+    {
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("csrf_token", mLepraContext.userContext.csrfToken);
+        
+        return mHttpClient.loadContent(LepraURI.getPostCommentsURI(postId), parameters, LepraCommentsListParser.getInstance());
     }
 }

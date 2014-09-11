@@ -16,8 +16,8 @@ import android.os.Parcelable;
  */
 public class LepraPost implements Parcelable
 {
-    public int postId               = Integer.MIN_VALUE;
-    public String postLink          = null;
+    public int id                   = Integer.MIN_VALUE;
+    public String link              = null;
     public boolean isGold           = false;
     
     public String userLogin         = null;
@@ -29,7 +29,7 @@ public class LepraPost implements Parcelable
     public String newCommentCnt     = null;
     public int rating               = Integer.MIN_VALUE;
     
-    public String content       = null;
+    public String content           = null;
     
     public static final Parcelable.Creator<LepraPost> CREATOR = new Parcelable.Creator<LepraPost>()
     {
@@ -49,8 +49,8 @@ public class LepraPost implements Parcelable
     
     public LepraPost(Parcel parcel)
     {
-        postId = parcel.readInt();
-        postLink = parcel.readString();
+        id = parcel.readInt();
+        link = parcel.readString();
         isGold = parcel.readInt() == 1;
         
         userLogin = parcel.readString();
@@ -74,8 +74,8 @@ public class LepraPost implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeInt(postId);
-        dest.writeString(postLink);
+        dest.writeInt(id);
+        dest.writeString(link);
         dest.writeInt(isGold ? 1 : 0);
         
         dest.writeString(userLogin);

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.koroed.lepra.Lepra;
 import org.koroed.lepra.content.LepraContext;
+import org.koroed.lepra.content.LepraPost;
 
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -113,7 +114,16 @@ public class MainFragment extends Fragment implements OnItemClickListener
         // Load posts fragment.
         if(savedInstanceState == null)
         {
-            getChildFragmentManager().beginTransaction().add(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
+            getFragmentManager().beginTransaction().add(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
+            
+            /*PostsCommentsFragment frag = new PostsCommentsFragment();
+            LepraPost post = new LepraPost();
+            post.id = 1769886;
+            Bundle args = new Bundle();
+            args.putParcelable(Constants.BUNDLE.KEY_POST, post);
+            frag.setArguments(args);
+            
+            getFragmentManager().beginTransaction().add(R.id.main_wrapper, frag, PostsCommentsFragment.TAG).commit();*/
         }
         
         return mDrawer;
@@ -177,12 +187,9 @@ public class MainFragment extends Fragment implements OnItemClickListener
             {
                 mDrawer.closeDrawers();
                 
-                UserFragment fragment = new UserFragment();
-                Bundle args = new Bundle();
-                args.putParcelable(Constants.BUNDLE.KEY_USER, Lepra.getInstance().getContext().user);
-                fragment.setArguments(args);
+                // Open user profile fragment.
+                getFragmentManager().beginTransaction().replace(R.id.main_wrapper, new UserFragment(), UserFragment.TAG).addToBackStack(UserFragment.TAG).commit();
                 
-                getChildFragmentManager().beginTransaction().replace(R.id.main_wrapper, fragment, UserFragment.TAG).addToBackStack(UserFragment.TAG).commit();
                 break;
             }
             
@@ -192,7 +199,7 @@ public class MainFragment extends Fragment implements OnItemClickListener
                 mDrawer.closeDrawers();
                 
                 // Open posts fragment.
-                getChildFragmentManager().beginTransaction().replace(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_wrapper, new PostsFragment(), PostsFragment.TAG).commit();
                 
                 break;
             }

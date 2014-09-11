@@ -16,6 +16,7 @@
     <com.viewpagerindicator.TabPageIndicator
         android:id="@+id/user_pager_titles"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/tab_color" />
     
 </RelativeLayout>
