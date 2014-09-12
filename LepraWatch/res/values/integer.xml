@@ -2,6 +2,6 @@
 <resources>
     <dimen name="post_menu_width">180dp</dimen>
     <dimen name="comments_header_bottom_margin">8dp</dimen>
-    <dimen name="comments_offset_circle_size">5dp</dimen>
-    <dimen name="comments_offset_circle_margin">2dp</dimen>
+    <dimen name="comments_offset_circle_size">2.5dp</dimen>
+    <dimen name="comments_offset_circle_margin">8dp</dimen>
 </resources>

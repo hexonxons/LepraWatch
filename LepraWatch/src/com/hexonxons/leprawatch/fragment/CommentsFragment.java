@@ -27,6 +27,7 @@ import android.text.format.DateFormat;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.SparseIntArray;
+import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,6 +43,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.devspark.robototextview.util.RobotoTextViewUtils;
+import com.devspark.robototextview.util.RobotoTypefaceManager;
+import com.devspark.robototextview.widget.RobotoTextView;
 import com.hexonxons.leprawatch.R;
 import com.hexonxons.leprawatch.system.Constants;
 import com.hexonxons.leprawatch.view.CommentElementView;
@@ -417,8 +421,11 @@ public class CommentsFragment extends Fragment
                 view.rating.setTextColor(getResources().getColor(R.color.lepra_gray));
             }
             
-            TextView text = new TextView(getActivity());
+            RobotoTextView text = new RobotoTextView(getActivity());
+            RobotoTextViewUtils.setTypeface(text, RobotoTypefaceManager.obtainTypeface(getActivity(), RobotoTypefaceManager.Typeface.ROBOTO_REGULAR));
+            text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
             text.setText(comment.content);
+            
             view.messageWrapper.addView(text, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             
             return view;

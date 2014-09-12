@@ -56,8 +56,8 @@ public class CommentOffsetView extends View
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
-        int width = mLevel == 0 ? 0 : (int) (mLevel * mCircleSize + mCircleMargin * (mLevel + 1));
-        int height = (int) (mLevel == 0 ? 0 : mCircleSize + 2 * mCircleMargin);
+        int width = (int) (mCircleSize * (mLevel + 1) + mCircleMargin * (mLevel + 2));
+        int height = (int) (mCircleSize + 2 * mCircleMargin);
         
         super.onMeasure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
     }
@@ -68,7 +68,7 @@ public class CommentOffsetView extends View
         int cx = (int) (mCircleMargin + mCircleSize / 2);
         int cy = getMeasuredHeight() / 2;
         
-        for(int i = 0; i < mLevel; ++i)
+        for(int i = -1; i < mLevel; ++i)
         {
             canvas.drawCircle(cx, cy, mCircleSize / 2, mPaint);
             cx += (mCircleSize + mCircleMargin);

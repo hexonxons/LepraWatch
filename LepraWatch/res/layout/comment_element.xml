@@ -10,12 +10,11 @@
         android:id="@+id/comment_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/comment_offset"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/comment_offset"
         android:orientation="vertical" >
 
     </LinearLayout>
@@ -36,11 +35,10 @@
         android:id="@+id/comment_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/comment_offset"
         android:layout_below="@+id/comment_message"
-        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_toLeftOf="@+id/comment_rating"
+        android:layout_toRightOf="@+id/comment_offset"
         android:textColor="@color/text_secondary"
         android:textSize="10sp"
         app:typeface="roboto_regular" />
@@ -49,19 +47,18 @@
         android:id="@+id/comment_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@drawable/post_element_divider"
-        android:layout_below="@+id/comment_author"
-        android:layout_toRightOf="@+id/comment_offset"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="4dp" />
+        android:layout_below="@+id/comment_author"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/comment_offset"
+        android:background="@drawable/post_element_divider" />
     
-
     <com.hexonxons.leprawatch.view.CommentOffsetView
         android:id="@+id/comment_offset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="8dp" />
     
 </com.hexonxons.leprawatch.view.CommentElementView>
