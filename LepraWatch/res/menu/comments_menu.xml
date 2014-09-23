@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/action_bad"
-          android:icon="@drawable/ic_action_bad_light"
-          android:title="@string/action_bad"
+    <item android:id="@+id/action_minus"
+          android:icon="@drawable/ic_action_minus"
+          android:title="@string/action_minus"
           android:showAsAction="always" />
     
-    <item android:id="@+id/action_good"
-          android:icon="@drawable/ic_action_good_light"
-          android:title="@string/action_good"
+    <item android:id="@+id/action_plus"
+          android:icon="@drawable/ic_action_plus"
+          android:title="@string/action_plus"
           android:showAsAction="always" />
     
     <item android:id="@+id/action_new_post"

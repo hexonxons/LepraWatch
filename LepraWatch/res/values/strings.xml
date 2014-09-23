@@ -34,8 +34,8 @@
     <string name="action_new_post">Новый пост</string>
     <string name="action_search">Поиск</string>
     <string name="action_reply">Ответить</string>
-    <string name="action_good">Плюс</string>
-    <string name="action_bad">Минус</string>
+    <string name="action_plus">Плюс</string>
+    <string name="action_minus">Минус</string>
     
     <string name="post_menu_favorites">В избранное</string>
     <string name="post_menu_my">В мои вещи</string>
