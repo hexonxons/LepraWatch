@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="Theme.LepraWatch" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.LepraWatch" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarItemBackground">@drawable/selectable_background</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.LepraWatch</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.LepraWatch</item>

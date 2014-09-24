@@ -3,13 +3,15 @@ package com.hexonxons.leprawatch.fragment.user;
 import org.koroed.lepra.Lepra;
 import org.koroed.lepra.content.LepraUser;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.hexonxons.leprawatch.R;
 import com.hexonxons.leprawatch.system.Constants;
@@ -22,19 +24,31 @@ public class UserFragment extends Fragment
     
     // Lepra user.
     private LepraUser mUser         = null;
+    // Is after rotate.
+    private boolean mIsAfterRotate  = false;
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        
+        setHasOptionsMenu(true);
+        
+        if(savedInstanceState == null)
+        {
+            mUser = Lepra.getInstance().getContext().user;
+        }
+        else
+        {
+            mIsAfterRotate = true;
+            
+            mUser = savedInstanceState.getParcelable(Constants.BUNDLE.KEY_USER);
+        }
+    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        if(savedInstanceState == null)
-        {
-            mUser = Lepra.getInstance().getContext().user;//getArguments().getParcelable(Constants.BUNDLE.KEY_USER);
-        }
-        else
-        {
-            mUser = savedInstanceState.getParcelable(Constants.BUNDLE.KEY_USER);
-        }
-        
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.user_layout, container, false);
         
         ViewPager pager = (ViewPager) rootView.findViewById(R.id.user_pager);
@@ -44,6 +58,29 @@ public class UserFragment extends Fragment
         tabIndicator.setViewPager(pager);
         
         return rootView;
+    }
+    
+    /**
+     * {@link https://code.google.com/p/android/issues/detail?id=25994} workaround.
+     */
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim)
+    {
+        if(enter)
+        {
+            if(mIsAfterRotate)
+            {
+                return super.onCreateAnimation(transit, enter, nextAnim);
+            }
+            else
+            {
+                return AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in);
+            }
+        }
+        else
+        {
+            return AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out);
+        }
     }
     
     @Override

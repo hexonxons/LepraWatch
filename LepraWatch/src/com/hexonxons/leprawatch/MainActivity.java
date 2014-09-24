@@ -3,8 +3,8 @@ package com.hexonxons.leprawatch;
 import org.koroed.lepra.Lepra;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 
@@ -12,7 +12,7 @@ import com.hexonxons.leprawatch.fragment.AuthFragment;
 import com.hexonxons.leprawatch.fragment.MainFragment;
 import com.hexonxons.leprawatch.util.TypefaceSpan;
 
-public class MainActivity extends Activity
+public class MainActivity extends FragmentActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +34,7 @@ public class MainActivity extends Activity
             if(savedInstanceState == null)
             {
                 // Load auth fragment.
-                getFragmentManager().beginTransaction().add(R.id.main, new AuthFragment(), AuthFragment.TAG).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.main, new AuthFragment(), AuthFragment.TAG).commit();
             }
         }
         else
@@ -48,14 +48,14 @@ public class MainActivity extends Activity
             // Setup actionbar.
             ActionBar actionBar = getActionBar();
             actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
             
             // Load main fragment.
             if(savedInstanceState == null)
             {
                 // Show main fragment.
-                getFragmentManager().beginTransaction().add(R.id.main, new MainFragment(), MainFragment.TAG).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.main, new MainFragment(), MainFragment.TAG).commit();
             }
         }
     }

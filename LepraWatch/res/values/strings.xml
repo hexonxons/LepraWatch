@@ -11,7 +11,6 @@
     <string name="login_button">Войти</string>
     
     <string name="navigation_my">Мои вещи</string>
-    <string name="navigation_main">Главная</string>
     <string name="navigation_favorites">Избранное</string>
     <string name="navigation_inbox">Инбокс</string>
     <string name="navigation_subsites">Подлепры</string>
@@ -59,7 +58,6 @@
     
     <string-array name="drawer_list_labels">
         <item>Мои вещи</item>
-        <item>Главная</item>
         <item>Избранное</item>
         <item>Инбокс</item>
         <item>Подлепры</item>
@@ -71,7 +69,6 @@
     
     <string-array name="drawer_list_icons">
         <item>@drawable/ic_action_favorite</item>
-        <item>@drawable/ic_action_view_as_list</item>
         <item>@drawable/ic_action_important</item>
         <item>@drawable/ic_action_unread</item>
         <item>@drawable/ic_action_group</item>

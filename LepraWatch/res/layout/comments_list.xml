@@ -10,6 +10,7 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:scrollingCache="true"
-    android:scrollbarStyle="outsideOverlay" >
+    android:scrollbarStyle="outsideOverlay"
+    android:background="@color/background" >
 
 </ListView>

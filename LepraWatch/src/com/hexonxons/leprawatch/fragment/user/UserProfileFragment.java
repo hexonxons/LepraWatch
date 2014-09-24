@@ -6,7 +6,6 @@ import org.koroed.lepra.content.LepraProfile;
 import org.koroed.lepra.content.LepraProfileContact;
 import org.koroed.lepra.content.LepraUser;
 
-import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,11 +13,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -61,6 +62,9 @@ public class UserProfileFragment extends Fragment
                     // Inflate profile layout.
                     inflate(getActivity().getLayoutInflater(), wrapper);
                     
+                    // Invalidate ab menu after profile is loaded.
+                    getActivity().supportInvalidateOptionsMenu();
+                    
                     break;
                 }
             }
@@ -72,12 +76,9 @@ public class UserProfileFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
         setHasOptionsMenu(true);
-    }
-    
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+        
         if(savedInstanceState == null)
         {
             mUser = getArguments().getParcelable(Constants.BUNDLE.KEY_USER);
@@ -87,7 +88,11 @@ public class UserProfileFragment extends Fragment
             mUser = savedInstanceState.getParcelable(Constants.BUNDLE.KEY_USER);
             mLepraProfile = savedInstanceState.getParcelable(Constants.BUNDLE.KEY_USER_PROFILE);
         }
-        
+    }
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         ViewGroup wrapper = (ViewGroup) inflater.inflate(R.layout.fragment_wrapper, container, false);
         
         if(mLepraProfile == null)
@@ -122,7 +127,10 @@ public class UserProfileFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
-        inflater.inflate(R.menu.user_profile_menu, menu);
+        if(mLepraProfile != null)
+        {
+            inflater.inflate(R.menu.user_profile_menu, menu);
+        }
     }
     
     @Override
@@ -142,6 +150,26 @@ public class UserProfileFragment extends Fragment
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mBroadcastReceiver);
         
         super.onPause();
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+            {
+                getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+            }
+            
+            default:
+            {
+                break;
+            }
+        }
+        
+        return super.onOptionsItemSelected(item);
     }
     
     private void inflate(LayoutInflater inflater, ViewGroup container)

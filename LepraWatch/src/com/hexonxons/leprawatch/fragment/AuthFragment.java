@@ -1,12 +1,12 @@
 package com.hexonxons.leprawatch.fragment;
 
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +34,7 @@ public class AuthFragment extends Fragment
             {
                 case Constants.INTENT_FILTER.ACTION_AUTH_FAIL:
                 {
-                    AuthDialogFragment fragment = (AuthDialogFragment) getActivity().getFragmentManager().findFragmentByTag(AuthDialogFragment.TAG);
+                    AuthDialogFragment fragment = (AuthDialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag(AuthDialogFragment.TAG);
                     Dialog authDialog = fragment.getDialog();
                     
                     TextView authDialogMessage = (TextView) authDialog.findViewById(R.id.auth_text);
@@ -48,13 +48,13 @@ public class AuthFragment extends Fragment
                 
                 case Constants.INTENT_FILTER.ACTION_AUTH_SUCCESS:
                 {
-                    AuthDialogFragment fragment = (AuthDialogFragment) getActivity().getFragmentManager().findFragmentByTag(AuthDialogFragment.TAG);
+                    AuthDialogFragment fragment = (AuthDialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag(AuthDialogFragment.TAG);
                     fragment.dismiss();
                     
                     // Show auth dialog.
                     AuthDialogFragment dialog = new AuthDialogFragment();
                     dialog.setCancelable(false);
-                    dialog.show(getActivity().getFragmentManager(), AuthDialogFragment.TAG);
+                    dialog.show(getActivity().getSupportFragmentManager(), AuthDialogFragment.TAG);
                     
                     // Workaround with View.setFitsSystemWindows issue.
                     // It seems not possible to request fit system windows without activity restart.
@@ -74,7 +74,7 @@ public class AuthFragment extends Fragment
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {        
+    {
         ViewGroup mainView = (ViewGroup) inflater.inflate(R.layout.auth, container, false);
         
         mLoginEditText = (EditText) mainView.findViewById(R.id.auth_login_edit);
@@ -88,7 +88,7 @@ public class AuthFragment extends Fragment
                 // Show auth dialog.
                 AuthDialogFragment dialog = new AuthDialogFragment();
                 dialog.setCancelable(false);
-                dialog.show(getActivity().getFragmentManager(), AuthDialogFragment.TAG);
+                dialog.show(getActivity().getSupportFragmentManager(), AuthDialogFragment.TAG);
                 
                 // Send auth intent.
                 Intent intent = new Intent(Constants.INTENT_FILTER.ACTION_AUTH);

@@ -10,9 +10,6 @@ import java.util.TimeZone;
 import org.koroed.lepra.content.LepraComment;
 import org.koroed.lepra.content.LepraPost;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +17,7 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -35,6 +33,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -76,6 +76,8 @@ public class CommentsFragment extends Fragment
     private View mLoadingView                   = null;
     // Map offset level to parent comment.
     private SparseIntArray mOffsetMap           = new SparseIntArray();
+    // Is after rotate.
+    private boolean mIsAfterRotate              = false;
     
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback()
     {
@@ -168,12 +170,24 @@ public class CommentsFragment extends Fragment
         }
     };
     
-    
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
         setHasOptionsMenu(true);
+        
+        if(savedInstanceState == null)
+        {
+            mLepraPost = getArguments().getParcelable(Constants.BUNDLE.KEY_POST);
+        }
+        else
+        {
+            mIsAfterRotate = true;
+            
+            mLepraPost = savedInstanceState.getParcelable(Constants.BUNDLE.KEY_POST);
+            mComments = savedInstanceState.getParcelableArrayList(Constants.BUNDLE.KEY_COMMENTS);
+        }
         
         mSimpleDateFormat = new SimpleDateFormat("HH:mm");
         mSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("Russia/Moscow"));
@@ -182,16 +196,6 @@ public class CommentsFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        if(savedInstanceState == null)
-        {
-            mLepraPost = getArguments().getParcelable(Constants.BUNDLE.KEY_POST);
-        }
-        else
-        {
-            mLepraPost = savedInstanceState.getParcelable(Constants.BUNDLE.KEY_POST);
-            mComments = savedInstanceState.getParcelableArrayList(Constants.BUNDLE.KEY_COMMENTS);
-        }
-        
         mListView = (ListView) inflater.inflate(R.layout.comments_list, container, false);
         mListView.setAdapter(new CommentsAdapter());
         mListView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
@@ -214,6 +218,29 @@ public class CommentsFragment extends Fragment
         }
         
         return mListView;
+    }
+    
+    /**
+     * {@link https://code.google.com/p/android/issues/detail?id=25994} workaround.
+     */
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim)
+    {
+        if(enter)
+        {
+            if(mIsAfterRotate)
+            {
+                return super.onCreateAnimation(transit, enter, nextAnim);
+            }
+            else
+            {
+                return AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in);
+            }
+        }
+        else
+        {
+            return AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out);
+        }
     }
     
     @Override
@@ -239,20 +266,12 @@ public class CommentsFragment extends Fragment
         inflater.inflate(R.menu.main_menu, menu);
     }
     
-    /**
-     * {@link https://code.google.com/p/android/issues/detail?id=25994} workaround.
-     */
     @Override
-    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim)
+    public void onPause()
     {
-        if(enter)
-        {
-            return AnimatorInflater.loadAnimator(getActivity(), android.R.animator.fade_in);
-        }
-        else
-        {
-            return AnimatorInflater.loadAnimator(getActivity(), android.R.animator.fade_out);
-        }
+        super.onPause();
+        
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mBroadcastReceiver);
     }
     
     @Override
@@ -267,11 +286,23 @@ public class CommentsFragment extends Fragment
     }
     
     @Override
-    public void onPause()
+    public boolean onOptionsItemSelected(MenuItem item)
     {
-        super.onPause();
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+            {
+                getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+            }
+            
+            default:
+            {
+                break;
+            }
+        }
         
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mBroadcastReceiver);
+        return super.onOptionsItemSelected(item);
     }
     
     public View createPostView()
