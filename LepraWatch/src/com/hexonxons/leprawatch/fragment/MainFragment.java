@@ -31,7 +31,6 @@ import android.text.SpannableStringBuilder;
 import android.text.format.DateFormat;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -130,6 +129,7 @@ public class MainFragment extends Fragment
                     listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
                     listView.setOnItemClickListener(mPostItemClickListener);
                     
+                    // Invalidate ab menu after posts is loaded.
                     getActivity().supportInvalidateOptionsMenu();
                     
                     break;

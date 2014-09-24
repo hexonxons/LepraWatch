@@ -164,6 +164,8 @@ public class CommentsFragment extends Fragment
                     // Update listview.
                     ((CommentsAdapter)((HeaderViewListAdapter)mListView.getAdapter()).getWrappedAdapter()).notifyDataSetChanged();
                     
+                    // Invalidate ab menu after comments is loaded.
+                    getActivity().supportInvalidateOptionsMenu();
                     break;
                 }
             }
@@ -263,7 +265,10 @@ public class CommentsFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
-        inflater.inflate(R.menu.main_menu, menu);
+        if(mComments != null)
+        {
+            inflater.inflate(R.menu.comments_menu, menu);
+        }
     }
     
     @Override
