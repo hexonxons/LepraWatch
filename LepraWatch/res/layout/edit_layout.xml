@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:gravity="center_vertical|top"
+        android:inputType="textMultiLine"
+        android:minHeight="128dp" >
+
+    </EditText>
+
+    <RelativeLayout
+        android:id="@+id/edit_panel"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ab_bottom_solid" >
+
+        <Button
+            android:id="@+id/edit_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/selectable_background"
+            android:drawableRight="@drawable/ic_action_send_now"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/action_send"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/edit_bold"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_above="@+id/edit_panel"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/selectable_background"
+        android:src="@drawable/ic_bold"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/edit_italic"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_above="@+id/edit_panel"
+        android:layout_toRightOf="@+id/edit_bold"
+        android:background="@drawable/selectable_background"
+        android:src="@drawable/ic_italic"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/edit_irony"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_above="@+id/edit_panel"
+        android:layout_toRightOf="@+id/edit_italic"
+        android:background="@drawable/selectable_background"
+        android:src="@drawable/ic_irony"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/edit_underline"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_above="@+id/edit_panel"
+        android:layout_toRightOf="@+id/edit_irony"
+        android:background="@drawable/selectable_background"
+        android:src="@drawable/ic_underline"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/edit_subscript"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_above="@+id/edit_panel"
+        android:layout_toRightOf="@+id/edit_underline"
+        android:background="@drawable/selectable_background"
+        android:src="@drawable/ic_subscript"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/edit_superscript"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignTop="@+id/edit_subscript"
+        android:layout_toRightOf="@+id/edit_subscript"
+        android:background="@drawable/selectable_background"
+        android:src="@drawable/ic_superscript"
+        android:visibility="gone" />
+
+</RelativeLayout>

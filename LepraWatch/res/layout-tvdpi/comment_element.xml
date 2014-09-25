@@ -46,7 +46,7 @@
     <View
         android:id="@+id/comment_divider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/comment_author"

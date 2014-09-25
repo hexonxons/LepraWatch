@@ -27,6 +27,7 @@ import android.widget.ImageView;
 
 import com.devspark.robototextview.widget.RobotoTextView;
 import com.hexonxons.leprawatch.R;
+import com.hexonxons.leprawatch.fragment.EditFragment;
 import com.hexonxons.leprawatch.system.Constants;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -56,7 +57,7 @@ public class UserProfileFragment extends Fragment
                     mLepraProfile = intent.getParcelableExtra(Constants.BUNDLE.KEY_USER_PROFILE);
                     
                     // Remove loading view.
-                    ViewGroup wrapper = (ViewGroup) getView().findViewById(R.id.fragment_wrapper);
+                    ViewGroup wrapper = (ViewGroup) getView().findViewById(R.id.user_profile_wrapper);
                     wrapper.removeAllViews();
                     
                     // Inflate profile layout.
@@ -93,7 +94,7 @@ public class UserProfileFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        ViewGroup wrapper = (ViewGroup) inflater.inflate(R.layout.fragment_wrapper, container, false);
+        ViewGroup wrapper = (ViewGroup) inflater.inflate(R.layout.user_profile_wrapper, container, false);
         
         if(mLepraProfile == null)
         {
@@ -160,6 +161,20 @@ public class UserProfileFragment extends Fragment
             case android.R.id.home:
             {
                 getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+            }
+            
+            case R.id.action_write_message:
+            {
+                // Run edit fragment.
+                EditFragment fragment = new EditFragment();
+                
+                getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main, fragment, EditFragment.TAG)
+                    .addToBackStack(EditFragment.TAG)
+                    .commit();
+                
                 return true;
             }
             

@@ -246,7 +246,7 @@ public class MainFragment extends Fragment
         mWelcomeMessages = getResources().getStringArray(R.array.welcome_text);
         
         // Inflate drawer.
-        mDrawer = (DrawerLayout) inflater.inflate(R.layout.main_layout, container, false);
+        mDrawer = (DrawerLayout) inflater.inflate(R.layout.posts_layout, container, false);
         // Create drawer toggle.
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawer, R.drawable.ic_drawer, R.string.main_drawer_open, R.string.main_drawer_close)
         {
@@ -381,7 +381,32 @@ public class MainFragment extends Fragment
             return true;
         }
         
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId())
+        {
+            case R.id.action_new_post:
+            {
+                // Disable toggle icon.
+                mDrawerToggle.setDrawerIndicatorEnabled(false);
+                
+                // Run edit fragment.
+                EditFragment fragment = new EditFragment();
+                
+                getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main, fragment, EditFragment.TAG)
+                    .addToBackStack(EditFragment.TAG)
+                    .commit();
+                
+                return true;
+            }
+            
+            default:
+            {
+                break;
+            }
+        }
+        
+        return false;
     }
     
     @Override

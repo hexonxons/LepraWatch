@@ -102,13 +102,35 @@ public class CommentsFragment extends Fragment
         public boolean onCreateActionMode(ActionMode mode, Menu menu)
         {
             MenuInflater inflater = mode.getMenuInflater();
-            inflater.inflate(R.menu.comments_menu, menu);
+            inflater.inflate(R.menu.comments_action_menu, menu);
             return true;
         }
         
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item)
         {
+            switch (item.getItemId())
+            {
+                case R.id.action_reply:
+                {
+                    // Run edit fragment.
+                    EditFragment fragment = new EditFragment();
+                    
+                    getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main, fragment, EditFragment.TAG)
+                        .addToBackStack(EditFragment.TAG)
+                        .commit();
+                    
+                    return true;
+                }
+                
+                default:
+                {
+                    break;
+                }
+            }
+            
             return false;
         }
     };
@@ -166,6 +188,7 @@ public class CommentsFragment extends Fragment
                     
                     // Invalidate ab menu after comments is loaded.
                     getActivity().supportInvalidateOptionsMenu();
+                    
                     break;
                 }
             }
@@ -301,6 +324,20 @@ public class CommentsFragment extends Fragment
                 return true;
             }
             
+            case R.id.action_new_comment:
+            {
+                // Run edit fragment.
+                EditFragment fragment = new EditFragment();
+                
+                getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main, fragment, EditFragment.TAG)
+                    .addToBackStack(EditFragment.TAG)
+                    .commit();
+                
+                return true;
+            }
+            
             default:
             {
                 break;
@@ -348,7 +385,21 @@ public class CommentsFragment extends Fragment
         }
         
         view.author.setText(authorBuilder);
-        view.rating.setText("" + mLepraPost.rating);
+        if(mLepraPost.rating > 0)
+        {
+            view.rating.setText("+" + mLepraPost.rating);
+            view.rating.setTextColor(getResources().getColor(R.color.green_500));
+        }
+        else if(mLepraPost.rating < 0)
+        {
+            view.rating.setText("" + mLepraPost.rating);
+            view.rating.setTextColor(getResources().getColor(R.color.red_500));
+        }
+        else
+        {
+            view.rating.setText("" + mLepraPost.rating);
+            view.rating.setTextColor(getResources().getColor(R.color.lepra_gray));
+        }
         
         TextView text = new TextView(getActivity());
         text.setText(mLepraPost.content);
