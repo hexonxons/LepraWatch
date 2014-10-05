@@ -15,7 +15,7 @@
         android:gravity="center_vertical|top"
         android:inputType="textMultiLine"
         android:minHeight="128dp" >
-
+        <requestFocus />
     </EditText>
 
     <RelativeLayout
@@ -103,5 +103,10 @@
         android:background="@drawable/selectable_background"
         android:src="@drawable/ic_superscript"
         android:visibility="gone" />
+
+    <requestFocus
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp" />
 
 </RelativeLayout>

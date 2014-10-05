@@ -1,5 +1,6 @@
 package com.hexonxons.leprawatch.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -101,6 +102,9 @@ public class EditFragment extends Fragment
             }
         });
         
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+        
         return rootView;
     }
     
@@ -114,11 +118,10 @@ public class EditFragment extends Fragment
                 FragmentActivity activity = getActivity();
                 
                 // Hide keyboard.
-                InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);
                 View focus = activity.getCurrentFocus();
                 if(focus != null)
                 {
-                    inputMethodManager.hideSoftInputFromWindow(focus.getWindowToken(), 0);
+                    ((InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(focus.getWindowToken(), 0);
                 }
                 
                 // Go back.

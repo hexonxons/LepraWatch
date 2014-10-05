@@ -113,6 +113,12 @@ public class CommentsFragment extends Fragment
             {
                 case R.id.action_reply:
                 {
+                    // Close action mode.
+                    if(mActionMode != null)
+                    {
+                        mActionMode.finish();
+                    }
+                    
                     // Run edit fragment.
                     EditFragment fragment = new EditFragment();
                     
